@@ -173,6 +173,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Csapat.cs" />
     <Compile Include="Models\MapperFactory.cs" />
     <Compile Include="Models\Versenyzo.cs" />
     <Compile Include="Models\VersenyzoViewModel.cs" />
