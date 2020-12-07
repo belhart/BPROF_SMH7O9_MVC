@@ -166,6 +166,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CsapatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VersenyzoApiController.cs" />
@@ -174,6 +175,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Csapat.cs" />
+    <Compile Include="Models\CsapatViewModel.cs" />
     <Compile Include="Models\MapperFactory.cs" />
     <Compile Include="Models\Versenyzo.cs" />
     <Compile Include="Models\VersenyzoViewModel.cs" />
@@ -284,6 +286,9 @@
       <Project>{4046c6a1-b0e2-4258-b9ca-e0fe6571ca39}</Project>
       <Name>F1Stats.Repository</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Csapat\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
