@@ -27,9 +27,9 @@ namespace F1Stats.Web.Controllers
             vm.ListOfCsapatok = mapper.Map<IList<Data.Csapat>, List<Models.Csapat>>(csapatok);
         }
 
-        private Csapat GetCsapatModel(int rajtszam)
+        private Csapat GetCsapatModel(string nev)
         {
-            F1Stats.Data.Csapat oneCsapat = logic.GetOneCsapat(rajtszam);
+            F1Stats.Data.Csapat oneCsapat = logic.GetOneCsapat(nev);
             return mapper.Map<Data.Csapat, Models.Csapat>(oneCsapat);
         }
 
