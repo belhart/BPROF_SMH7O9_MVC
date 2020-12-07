@@ -7,6 +7,8 @@
     {
         void CreateCsapat(Csapat csapat);
 
+        void CreateCsapat(string name, string motor, int versenyekszama, int gyozelmek);
+
         new Csapat GetOne(string name);
 
         new IQueryable<Csapat> GetAll();
@@ -17,6 +19,8 @@
 
         void UpdateGyozelmek(string name, int gyozelmekSzama);
 
-        void DeleteCsapat(string name);
+        bool DeleteCsapat(string name);
+
+        bool UpdateCsapatTeljes(string name, string motor, int versenyekszama, int gyozelmek);
     }
 }

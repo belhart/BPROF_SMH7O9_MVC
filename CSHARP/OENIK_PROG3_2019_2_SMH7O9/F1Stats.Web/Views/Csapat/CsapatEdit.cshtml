@@ -1,0 +1,25 @@
+﻿@model F1Stats.Web.Models.Csapat
+
+<h2>Edit of one team</h2>
+
+@using (Html.BeginForm("Edit", "Csapat"))
+{
+    @Html.ValidationSummary()
+
+    @Html.AntiForgeryToken()
+
+    @Html.Hidden("editAction", ViewData["editAction"].ToString());
+
+    <div class="editor-label">@Html.LabelFor(m => m.CsapatNev)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.CsapatNev)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.Motor)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Motor)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.VersenyekSzama)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.VersenyekSzama)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.Gyozelmek)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Gyozelmek)</div>
+    <input type="submit" value="SEND" />
+}

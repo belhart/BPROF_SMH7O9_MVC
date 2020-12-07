@@ -11,6 +11,7 @@
 
         public EredmenyLogic()
         {
+            F1StatsDatabaseEntities db = new F1StatsDatabaseEntities();
             this.eredmenyRepo = new EredmenyRepository(new F1StatsDatabaseEntities());
         }
 

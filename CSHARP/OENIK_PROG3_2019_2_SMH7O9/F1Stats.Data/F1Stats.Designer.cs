@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'B:\Users\Admin\Videos\sssss\CSHARP\OENIK_PROG3_2019_2_SMH7O9\F1Stats.Data\F1Stats.edmx'. 
+﻿// T4 code generation is enabled for model 'B:\suli\prog3\CSHARP\OENIK_PROG3_2019_2_SMH7O9\F1Stats.Data\F1Stats.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

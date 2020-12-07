@@ -18,7 +18,7 @@ namespace F1Stats.Web.Controllers
         public VersenyzoController()
         {
             logic = new VersenyzoLogic();
-            mapper = MapperFactory.CreateMapper();
+            mapper = MapperFactory.CreateVersenyzoMapper();
 
             vm = new VersenyzoViewModel();
             vm.EditedVersenyzo = new Versenyzo();

@@ -15,6 +15,6 @@
 
         void CreateCsapat(string name, string motor, int versenyekszama, int gyozelmek);
 
-        void UpdateCsapat(string name, string motor, int versenyekszama, int gyozelmek);
+        bool UpdateCsapat(string name, string motor, int versenyekszama, int gyozelmek);
     }
 }

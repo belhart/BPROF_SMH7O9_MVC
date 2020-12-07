@@ -1,5 +1,6 @@
 ﻿namespace F1Stats.Repository
 {
+    using System;
     using System.Linq;
     using F1Stats.Data;
 
@@ -37,10 +38,18 @@
             this.db.SaveChanges();
         }
 
-        public void DeleteCsapat(string name)
+        public bool DeleteCsapat(string name)
         {
-            this.db.Csapat.Remove(this.GetOne(name));
-            this.db.SaveChanges();
+            try
+            {
+                this.db.Csapat.Remove(this.GetOne(name));
+                this.db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public IQueryable<Csapat> GetAll()
@@ -53,6 +62,37 @@
             var csapat = this.GetOne(name);
             csapat.gyozelmek = gyozelmekSzama;
             this.db.SaveChanges();
+        }
+
+        public void CreateCsapat(string name, string motor, int versenyekszama, int gyozelmek)
+        {
+            Csapat csapat = new Csapat()
+            {
+                csapat_nev = name,
+                motor = motor,
+                versenyek_szama = versenyekszama,
+                gyozelmek = gyozelmek,
+            };
+            this.db.Csapat.Add(csapat);
+            this.db.SaveChanges();
+        }
+
+        public bool UpdateCsapatTeljes(string name, string motor, int versenyekszama, int gyozelmek)
+        {
+            try
+            {
+                var csapat = this.GetOne(name);
+                csapat.csapat_nev = name;
+                csapat.motor = motor;
+                csapat.versenyek_szama = versenyekszama;
+                csapat.gyozelmek = gyozelmek;
+                this.db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

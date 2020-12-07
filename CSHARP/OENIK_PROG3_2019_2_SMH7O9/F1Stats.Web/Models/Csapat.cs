@@ -7,11 +7,11 @@ namespace F1Stats.Web.Models
         [Display(Name = "Csapat neve")]
         [Required]
         [StringLength(50, MinimumLength = 5)]
-        public int CsapatNev { get; set; }
+        public string CsapatNev { get; set; }
 
         [Display(Name = "Csapat motor szallitoja")]
         [Required]
-        public int Motor { get; set; }
+        public string Motor { get; set; }
 
         [Display(Name = "Csapat versenyeinek szama")]
         [Required]

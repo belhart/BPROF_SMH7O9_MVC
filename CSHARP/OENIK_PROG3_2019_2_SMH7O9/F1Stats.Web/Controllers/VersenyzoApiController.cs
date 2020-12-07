@@ -23,7 +23,7 @@ namespace F1Stats.Web.Controllers
         public VersenyzoApiController()
         {
             logic = new VersenyzoLogic();
-            mapper = MapperFactory.CreateMapper();
+            mapper = MapperFactory.CreateVersenyzoMapper();
         }
 
         [ActionName("all")]

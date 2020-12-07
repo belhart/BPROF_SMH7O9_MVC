@@ -8,7 +8,7 @@ namespace F1Stats.Web.Models
 {
     public class MapperFactory
     {
-        public static IMapper CreateMapper()
+        public static IMapper CreateVersenyzoMapper()
         {
             var config = new MapperConfiguration(cfg =>
             {
@@ -19,6 +19,20 @@ namespace F1Stats.Web.Models
                 ForMember(dest => dest.Eletkor, map => map.MapFrom(src => src.eletkor)).
                 ForMember(dest => dest.OsszPont, map => map.MapFrom(src => src.ossz_pont)).
                 ForMember(dest => dest.IdenybeliPont, map => map.MapFrom(src => src.idenybeli_pont));
+            });
+
+            return config.CreateMapper();
+        }
+
+        public static IMapper CreateCsapatMapper()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<F1Stats.Data.Csapat, F1Stats.Web.Models.Csapat>().
+                ForMember(dest => dest.CsapatNev, map => map.MapFrom(src => src.csapat_nev)).
+                ForMember(dest => dest.Motor, map => map.MapFrom(src => src.motor)).
+                ForMember(dest => dest.VersenyekSzama, map => map.MapFrom(src => src.versenyek_szama)).
+                ForMember(dest => dest.Gyozelmek, map => map.MapFrom(src => src.gyozelmek));
             });
 
             return config.CreateMapper();

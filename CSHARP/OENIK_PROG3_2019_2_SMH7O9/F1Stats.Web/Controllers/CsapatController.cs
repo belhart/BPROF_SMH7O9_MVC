@@ -19,14 +19,14 @@ namespace F1Stats.Web.Controllers
         public CsapatController()
         {
             logic = new CsapatLogic();
-            mapper = MapperFactory.CreateMapper();
+            mapper = MapperFactory.CreateCsapatMapper();
 
             vm = new CsapatViewModel();
             vm.EditedCsapat = new Csapat();
             var csapatok = logic.GetAllCsapat();
             vm.ListOfCsapatok = mapper.Map<IList<Data.Csapat>, List<Models.Csapat>>(csapatok);
         }
-
+        
         private Csapat GetCsapatModel(string nev)
         {
             F1Stats.Data.Csapat oneCsapat = logic.GetOneCsapat(nev);
@@ -41,23 +41,23 @@ namespace F1Stats.Web.Controllers
         }
 
         // GET: Csapat/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string name)
         {
-            return View("CsapatDetails", GetCsapatModel(id));
+            return View("CsapatDetails", GetCsapatModel(name));
         }
         //GET
-        public ActionResult Remove(int id)
+        public ActionResult Remove(string name)
         {
             TempData["editResult"] = "Delete FAIL";
             //ezt megcsinálni
-            if (logic.DeleteCsapat(id)) TempData["editResult"] = "Delete OK";
+            if (logic.DeleteCsapat(name)) TempData["editResult"] = "Delete OK";
             return RedirectToAction(nameof(Index));
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string name)
         {
             ViewData["editAction"] = "Edit";
-            vm.EditedCsapat = GetCsapatModel(id);
+            vm.EditedCsapat = GetCsapatModel(name);
             return View("CsapatIndex", vm);
         }
 
@@ -71,12 +71,12 @@ namespace F1Stats.Web.Controllers
                 if (editAction == "AddNew")
                 {
                     //ezt megcsinálni
-                    logic.CreateCsapat(versenyzo.Rajtszam, versenyzo.Nev, versenyzo.CsapatNev, versenyzo.Eletkor, versenyzo.OsszPont, versenyzo.IdenybeliPont);
+                    logic.CreateCsapat(csapat.CsapatNev, csapat.Motor, csapat.VersenyekSzama, csapat.Gyozelmek);
                 }
                 else
                 {
                     //ezt megcsinálni
-                    bool success = logic.UpdateCsapat(versenyzo.Rajtszam, versenyzo.Nev, versenyzo.CsapatNev, versenyzo.Eletkor, versenyzo.OsszPont, versenyzo.IdenybeliPont);
+                    bool success = logic.UpdateCsapat(csapat.CsapatNev, csapat.Motor, csapat.VersenyekSzama, csapat.Gyozelmek);
                     if (!success) TempData["editResult"] = "Edit FAIL";
                 }
                 return RedirectToAction(nameof(Index));
