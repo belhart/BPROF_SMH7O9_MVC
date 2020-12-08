@@ -26,7 +26,7 @@ namespace F1Stats.Web.Controllers
             var csapatok = logic.GetAllCsapat();
             vm.ListOfCsapatok = mapper.Map<IList<Data.Csapat>, List<Models.Csapat>>(csapatok);
         }
-        
+
         private Csapat GetCsapatModel(string nev)
         {
             F1Stats.Data.Csapat oneCsapat = logic.GetOneCsapat(nev);
@@ -49,7 +49,6 @@ namespace F1Stats.Web.Controllers
         public ActionResult Remove(string name)
         {
             TempData["editResult"] = "Delete FAIL";
-            //ezt megcsinálni
             if (logic.DeleteCsapat(name)) TempData["editResult"] = "Delete OK";
             return RedirectToAction(nameof(Index));
         }
@@ -70,12 +69,10 @@ namespace F1Stats.Web.Controllers
                 TempData["editResult"] = "Edit OK";
                 if (editAction == "AddNew")
                 {
-                    //ezt megcsinálni
                     logic.CreateCsapat(csapat.CsapatNev, csapat.Motor, csapat.VersenyekSzama, csapat.Gyozelmek);
                 }
                 else
                 {
-                    //ezt megcsinálni
                     bool success = logic.UpdateCsapat(csapat.CsapatNev, csapat.Motor, csapat.VersenyekSzama, csapat.Gyozelmek);
                     if (!success) TempData["editResult"] = "Edit FAIL";
                 }
