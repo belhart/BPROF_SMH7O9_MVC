@@ -68,11 +68,11 @@ namespace F1Stats.Web.Controllers
                 TempData["editResult"] = "Edit OK";
                 if (editAction == "AddNew")
                 {
-                    logic.CreateVersenyhetvege(versenyzo.Rajtszam, versenyzo.Nev, versenyzo.CsapatNev, versenyzo.Eletkor, versenyzo.OsszPont, versenyzo.IdenybeliPont);
+                    logic.CreateVersenyhetvege(versenyhetvege.Nev, versenyhetvege.Versenyhetvege_szama, versenyhetvege.Hossz, versenyhetvege.Kor, versenyhetvege.Idopont, versenyhetvege.Helyszin);
                 }
                 else
                 {
-                    bool success = logic.UpdateVersenyhetvege(versenyzo.Rajtszam, versenyzo.Nev, versenyzo.CsapatNev, versenyzo.Eletkor, versenyzo.OsszPont, versenyzo.IdenybeliPont);
+                    bool success = logic.UpdateVersenyhetvege(versenyhetvege.Nev, versenyhetvege.Versenyhetvege_szama, versenyhetvege.Hossz, versenyhetvege.Kor, versenyhetvege.Idopont, versenyhetvege.Helyszin);
                     if (!success) TempData["editResult"] = "Edit FAIL";
                 }
                 return RedirectToAction(nameof(Index));
