@@ -169,6 +169,7 @@
     <Compile Include="Controllers\CsapatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VersenyhetvegeController.cs" />
     <Compile Include="Controllers\VersenyzoApiController.cs" />
     <Compile Include="Controllers\VersenyzoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -177,6 +178,8 @@
     <Compile Include="Models\Csapat.cs" />
     <Compile Include="Models\CsapatViewModel.cs" />
     <Compile Include="Models\MapperFactory.cs" />
+    <Compile Include="Models\Versenyhetvege.cs" />
+    <Compile Include="Models\VersenyhetvegeViewModel.cs" />
     <Compile Include="Models\Versenyzo.cs" />
     <Compile Include="Models\VersenyzoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -291,7 +294,9 @@
       <Name>F1Stats.Repository</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Versenyhetvege\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

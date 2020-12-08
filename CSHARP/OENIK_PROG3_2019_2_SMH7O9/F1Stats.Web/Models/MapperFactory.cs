@@ -37,5 +37,20 @@ namespace F1Stats.Web.Models
 
             return config.CreateMapper();
         }
+
+        public static IMapper CreateVersenyhetvegeMapper()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<F1Stats.Data.Versenyhetvege, F1Stats.Web.Models.Versenyhetvege>().
+                ForMember(dest => dest.Nev, map => map.MapFrom(src => src.nev)).
+                ForMember(dest => dest.Versenyhetvege_szama, map => map.MapFrom(src => src.VERSENYHETVEGE_SZAMA)).
+                ForMember(dest => dest.Hossz, map => map.MapFrom(src => src.hossz)).
+                ForMember(dest => dest.Idopont, map => map.MapFrom(src => src.idopont)).
+                ForMember(dest => dest.Helyszin, map => map.MapFrom(src => src.helyszin));
+            });
+
+            return config.CreateMapper();
+        }
     }
 }
