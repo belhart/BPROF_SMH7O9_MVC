@@ -246,6 +246,10 @@
     <Content Include="Views\Csapat\CsapatEdit.cshtml" />
     <Content Include="Views\Csapat\CsapatList.cshtml" />
     <Content Include="Views\Csapat\CsapatDetails.cshtml" />
+    <Content Include="Views\Versenyhetvege\VersenyhetvegeIndex.cshtml" />
+    <Content Include="Views\Versenyhetvege\VersenyhetvegeEdit.cshtml" />
+    <Content Include="Views\Versenyhetvege\VersenyhetvegeList.cshtml" />
+    <Content Include="Views\Versenyhetvege\VersenyhetvegeDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
@@ -294,9 +298,7 @@
       <Name>F1Stats.Repository</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Versenyhetvege\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

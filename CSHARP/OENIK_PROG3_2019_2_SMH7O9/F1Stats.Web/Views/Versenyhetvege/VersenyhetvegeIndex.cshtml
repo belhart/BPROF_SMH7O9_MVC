@@ -1,0 +1,8 @@
+﻿@model F1Stats.Web.Models.VersenyhetvegeViewModel
+@{
+    ViewBag.Title = "VersenyhetvegeIndex";
+}
+<h2>Versenyzo Index</h2>
+<p style="color:red; font-weight:bold">@TempData["editResult"]</p>
+@Html.Partial("VersenyzoEdit", Model.EditedVersenyhetvege)
+@Html.Partial("VersenyzoList", Model.ListOfVersenyhetvegek)
