@@ -26,9 +26,9 @@ namespace F1Stats.Web.Controllers
             vm.ListOfVersenyhetvegek = mapper.Map<IList<Data.Versenyhetvege>, List<Models.Versenyhetvege>>(versenyhetvegek);
         }
 
-        private Versenyhetvege GetVersenyhetvegeModel(int rajtszam)
+        private Versenyhetvege GetVersenyhetvegeModel(int versenySzam)
         {
-            F1Stats.Data.Versenyhetvege oneVersenyhetvege = logic.GetOneVersenyhetvege(rajtszam);
+            F1Stats.Data.Versenyhetvege oneVersenyhetvege = logic.GetOneVersenyhetvege(versenySzam);
             return mapper.Map<Data.Versenyhetvege, Models.Versenyhetvege>(oneVersenyhetvege);
         }
 

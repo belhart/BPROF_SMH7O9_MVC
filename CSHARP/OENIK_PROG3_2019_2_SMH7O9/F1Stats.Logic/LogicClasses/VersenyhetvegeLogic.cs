@@ -1,5 +1,6 @@
 ﻿namespace F1Stats.Logic
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using F1Stats.Data;
@@ -24,9 +25,9 @@
             return this.vhRepo.GetAll().ToList();
         }
 
-        public Versenyhetvege GetOneVersenyhetvege(int raceNumber)
+        public Versenyhetvege GetOneVersenyhetvege(int versenySzama)
         {
-            return this.vhRepo.GetOne(raceNumber);
+            return this.vhRepo.GetOne(versenySzama);
         }
 
         public void CreateVersenyhetvege(Versenyhetvege versenyhetvege)
@@ -34,9 +35,19 @@
             this.vhRepo.CreateVersenyHetvege(versenyhetvege);
         }
 
-        public void DeleteVersenyhetvege(int raceNumber)
+        public bool DeleteVersenyhetvege(int versenySzama)
         {
-            this.vhRepo.DeleteVersenyHetvege(raceNumber);
+            return this.vhRepo.DeleteVersenyHetvege(versenySzama);
+        }
+
+        public void CreateVersenyhetvege(string nev, int versenySzama, int hossz, int kor, DateTime idopont, string helyszin)
+        {
+            this.vhRepo.CreateVersenyhetvege(nev, versenySzama, hossz, kor, idopont, helyszin);
+        }
+
+        public bool UpdateVersenyhetvege(string nev, int versenySzama, int hossz, int kor, DateTime idopont, string helyszin)
+        {
+            return this.vhRepo.UpdateVersenyhetvegeTeljes(nev, versenySzama, hossz, kor, idopont, helyszin);
         }
     }
 }

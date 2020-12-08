@@ -8,6 +8,8 @@
     {
         void CreateVersenyHetvege(Versenyhetvege versenyhetvege);
 
+        void CreateVersenyhetvege(string nev, int versenySzama, int hossz, int kor, DateTime idopont, string helyszin);
+
         new Versenyhetvege GetOne(int raceNumber); //VHSzam = VersenyHetvegeSzam (átírni VersenyHetvegeIndex ?)
 
         new IQueryable<Versenyhetvege> GetAll();
@@ -22,6 +24,8 @@
 
         void UpdateHelyszin(int raceNumber, string newHelyszin);
 
-        void DeleteVersenyHetvege(int raceNumber);
+        bool DeleteVersenyHetvege(int raceNumber);
+
+        bool UpdateVersenyhetvegeTeljes(string nev, int versenySzama, int hossz, int kor, DateTime idopont, string helyszin);
     }
 }

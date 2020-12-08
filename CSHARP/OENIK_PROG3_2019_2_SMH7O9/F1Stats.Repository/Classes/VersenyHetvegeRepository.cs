@@ -13,16 +13,39 @@
             this.db = db;
         }
 
+        public void CreateVersenyhetvege(string nev, int versenySzama, int hossz, int kor, DateTime idopont, string helyszin)
+        {
+            Versenyhetvege versenyhetvege = new Versenyhetvege()
+            {
+                nev = nev,
+                VERSENYHETVEGE_SZAMA = versenySzama,
+                hossz = hossz,
+                kor = kor,
+                idopont = idopont,
+                helyszin = helyszin,
+            };
+            this.db.Versenyhetvege.Add(versenyhetvege);
+            this.db.SaveChanges();
+        }
+
         public void CreateVersenyHetvege(Versenyhetvege versenyhetvege)
         {
             this.db.Versenyhetvege.Add(versenyhetvege);
             this.db.SaveChanges();
         }
 
-        public void DeleteVersenyHetvege(int raceNumber)
+        public bool DeleteVersenyHetvege(int raceNumber)
         {
-            this.db.Versenyhetvege.Remove(this.GetOne(raceNumber));
-            this.db.SaveChanges();
+            try
+            {
+                this.db.Versenyhetvege.Remove(this.GetOne(raceNumber));
+                this.db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public IQueryable<Versenyhetvege> GetAll()
@@ -68,6 +91,26 @@
             var versenyhetvege = this.GetOne(raceNumber);
             versenyhetvege.nev = newName;
             this.db.SaveChanges();
+        }
+
+        public bool UpdateVersenyhetvegeTeljes(string nev, int versenySzama, int hossz, int kor, DateTime idopont, string helyszin)
+        {
+            try
+            {
+                var versenyhetvege = this.GetOne(versenySzama);
+                versenyhetvege.nev = nev;
+                versenyhetvege.VERSENYHETVEGE_SZAMA = versenySzama;
+                versenyhetvege.hossz = hossz;
+                versenyhetvege.kor = kor;
+                versenyhetvege.idopont = idopont;
+                versenyhetvege.helyszin = helyszin;
+                this.db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         IQueryable<Versenyhetvege> IRepository<Versenyhetvege, int>.GetAll()
