@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace F1Stats.Logic
 {
-    public class CsapatLogic
+    public class CsapatLogic : ICsapatLogic
     {
         public ICsapatRepository csapatRepo;
 

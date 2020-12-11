@@ -262,10 +262,9 @@
                 case 3:
                     break;
                 case 4:
-                    Console.Write("Törölni kívánt eredmény versenyhetvégének száma: ");
-                    int vhszam = int.Parse(Console.ReadLine());
-                    Console.Write("Törölni kívánt eredményt elérő rajtszáma: ");
-                    eredmenylogic.DeleteEredmeny(vhszam, int.Parse(Console.ReadLine()));
+                    Console.Write("Törölni kívánt eredmény id-je: ");
+                    int eredmenyid = int.Parse(Console.ReadLine());
+                    eredmenylogic.DeleteEredmeny(eredmenyid);
                     break;
                 default:
                     break;

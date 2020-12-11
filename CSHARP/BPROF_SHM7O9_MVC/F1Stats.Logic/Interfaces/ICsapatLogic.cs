@@ -5,7 +5,7 @@ using System.Text;
 
 namespace F1Stats.Logic
 {
-    interface ICsapatLogic
+    public interface ICsapatLogic
     {
         Csapat GetOneCsapat(string name);
 

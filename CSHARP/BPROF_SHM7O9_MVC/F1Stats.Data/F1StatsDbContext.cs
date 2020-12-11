@@ -18,7 +18,6 @@ namespace F1Stats.Data
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.
-                    UseLazyLoadingProxies().
                     UseSqlServer(@"data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\F1StatsDatabase.mdf;integrated security=True;MultipleActiveResultSets=True");
             }
         }

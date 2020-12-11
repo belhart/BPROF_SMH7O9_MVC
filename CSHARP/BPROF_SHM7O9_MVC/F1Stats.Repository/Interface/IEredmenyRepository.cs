@@ -10,14 +10,14 @@ namespace F1Stats.Repository
     {
         void CreateEredmeny(Eredmeny eredmeny);
 
-        new Eredmeny GetOne(int raceNumber, int rajtSzam);
+        new Eredmeny GetOne(int eredmenyId);
 
         new IQueryable<Eredmeny> GetAll();
 
-        void UpdateHelyezes(int raceNumber, int rajtSzam, int newHelyezes);
+        void UpdateHelyezes(int eredmenyId, int newHelyezes);
 
-        void UpdatePont(int raceNumber, int rajtSzam, int newPont);
+        void UpdatePont(int eredmenyId, int newPont);
 
-        void DeleteEredmeny(int raceNumber, int rajtSzam);
+        void DeleteEredmeny(int eredmenyId);
     }
 }

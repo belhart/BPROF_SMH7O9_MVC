@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace F1Stats.Data.Models
@@ -8,6 +9,7 @@ namespace F1Stats.Data.Models
     public class Eredmeny
     {
         [Key]
+        public int eredmenyId { get; set; }
         public int versenyhetvege_szam { get; set; }
         public int rajtszam { get; set; }
         public Nullable<int> helyezes { get; set; }

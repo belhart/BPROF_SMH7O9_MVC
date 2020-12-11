@@ -5,7 +5,7 @@ using System.Text;
 
 namespace F1Stats.Logic
 {
-    interface IVersenyzoLogic
+    public interface IVersenyzoLogic
     {
         Versenyzo GetOneVersenyzo(int rajtszam);
 

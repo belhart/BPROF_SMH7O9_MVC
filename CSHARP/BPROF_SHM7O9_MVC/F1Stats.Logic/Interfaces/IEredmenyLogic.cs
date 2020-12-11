@@ -5,9 +5,9 @@ using System.Text;
 
 namespace F1Stats.Logic
 {
-    interface IEredmenyLogic
+    public interface IEredmenyLogic
     {
-        Eredmeny GetOneEredmeny(int raceNumber, int rajtSzam);
+        Eredmeny GetOneEredmeny(int eredmenyId);
 
         IList<Eredmeny> GetAllEredmeny();
 

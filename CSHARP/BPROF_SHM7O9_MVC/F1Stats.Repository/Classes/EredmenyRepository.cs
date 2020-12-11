@@ -19,9 +19,9 @@
             this.db.SaveChanges();
         }
 
-        public void DeleteEredmeny(int raceNumber, int rajtSzam)
+        public void DeleteEredmeny(int eredmenyId)
         {
-            this.db.Eredmeny.Remove(this.GetOne(raceNumber, rajtSzam));
+            this.db.Eredmeny.Remove(this.GetOne(eredmenyId));
             this.db.SaveChanges();
         }
 
@@ -30,21 +30,21 @@
             return this.db.Eredmeny;
         }
 
-        public Eredmeny GetOne(int raceNumber, int rajtSzam)
+        public Eredmeny GetOne(int eredmenyId)
         {
-            return this.db.Eredmeny.Where(x => (x.rajtszam == rajtSzam) && (x.versenyhetvege_szam == raceNumber)).FirstOrDefault();
+            return this.db.Eredmeny.Where(x => x.eredmenyId == eredmenyId).FirstOrDefault();
         }
 
-        public void UpdateHelyezes(int raceNumber, int rajtSzam, int newHelyezes)
+        public void UpdateHelyezes(int eredmenyId, int newHelyezes)
         {
-            var eredmeny = this.GetOne(raceNumber, rajtSzam);
+            var eredmeny = this.GetOne(eredmenyId);
             eredmeny.helyezes = newHelyezes;
             this.db.SaveChanges();
         }
 
-        public void UpdatePont(int raceNumber, int rajtSzam, int newPont)
+        public void UpdatePont(int eredmenyId, int newPont)
         {
-            var eredmeny = this.GetOne(raceNumber, rajtSzam);
+            var eredmeny = this.GetOne(eredmenyId);
             eredmeny.pont = newPont;
             this.db.SaveChanges();
         }

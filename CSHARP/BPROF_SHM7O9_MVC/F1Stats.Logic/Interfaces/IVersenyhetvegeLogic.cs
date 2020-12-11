@@ -5,7 +5,7 @@ using System.Text;
 
 namespace F1Stats.Logic
 {
-    interface IVersenyhetvegeLogic
+    public interface IVersenyhetvegeLogic
     {
         Versenyhetvege GetOneVersenyhetvege(int versenySzama);
 

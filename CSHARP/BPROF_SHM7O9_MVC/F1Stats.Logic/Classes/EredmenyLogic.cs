@@ -7,7 +7,7 @@ using F1Stats.Repository;
 
 namespace F1Stats.Logic
 {
-    public class EredmenyLogic
+    public class EredmenyLogic : IEredmenyLogic
     {
         public IEredmenyRepository eredmenyRepo;
 
@@ -26,9 +26,9 @@ namespace F1Stats.Logic
             return this.eredmenyRepo.GetAll().ToList();
         }
 
-        public Eredmeny GetOneEredmeny(int raceNumber, int rajtSzam)
+        public Eredmeny GetOneEredmeny(int eredmenyId)
         {
-            return this.eredmenyRepo.GetOne(raceNumber, rajtSzam);
+            return this.eredmenyRepo.GetOne(eredmenyId);
         }
 
         public void CreateEredmeny(Eredmeny eredmeny)
@@ -36,9 +36,9 @@ namespace F1Stats.Logic
             this.eredmenyRepo.CreateEredmeny(eredmeny);
         }
 
-        public void DeleteEredmeny(int raceNumber, int rajtSzam)
+        public void DeleteEredmeny(int eredmenyId)
         {
-            this.eredmenyRepo.DeleteEredmeny(raceNumber, rajtSzam);
+            this.eredmenyRepo.DeleteEredmeny(eredmenyId);
         }
 
     }
