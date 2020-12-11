@@ -7,25 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace F1Stats.Data
+namespace F1Stats.Repository
 {
     using System;
     using System.Collections.Generic;
+    using F1Stats.Data;
 
-    public partial class Csapat
+    public class DbInit
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Csapat()
+        public F1StatsDbContext db { get; set; }
+        public DbInit()
         {
-            this.Versenyzo = new HashSet<Versenyzo>();
+            this.db = new F1StatsDbContext();
         }
-
-        public string csapat_nev { get; set; }
-        public string motor { get; set; }
-        public Nullable<int> versenyek_szama { get; set; }
-        public Nullable<int> gyozelmek { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Versenyzo> Versenyzo { get; set; }
     }
 }

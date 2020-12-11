@@ -6,7 +6,7 @@ using System.Text;
 
 namespace F1Stats.Data
 {
-    class F1StatsDbContext : DbContext
+    public class F1StatsDbContext : DbContext
     {
         public F1StatsDbContext()
         {
