@@ -6,7 +6,7 @@ using System.Text;
 
 namespace F1Stats.Repository
 {
-    interface IVersenyzoRepository
+    public interface IVersenyzoRepository
     {
         void CreateVersenyzo(Versenyzo versenyzo);
 

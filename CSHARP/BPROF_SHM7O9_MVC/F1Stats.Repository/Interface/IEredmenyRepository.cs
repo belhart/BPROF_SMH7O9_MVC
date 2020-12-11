@@ -6,7 +6,7 @@ using System.Text;
 
 namespace F1Stats.Repository
 {
-    interface IEredmenyRepository
+    public interface IEredmenyRepository
     {
         void CreateEredmeny(Eredmeny eredmeny);
 

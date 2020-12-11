@@ -6,7 +6,7 @@ using System.Text;
 
 namespace F1Stats.Repository
 {
-    interface IVersenyhetvegeRepository
+    public interface IVersenyhetvegeRepository
     {
         void CreateVersenyHetvege(Versenyhetvege versenyhetvege);
 

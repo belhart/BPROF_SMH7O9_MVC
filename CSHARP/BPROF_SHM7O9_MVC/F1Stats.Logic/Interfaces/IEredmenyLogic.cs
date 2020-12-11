@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace F1Stats.Logic.Interfaces
+namespace F1Stats.Logic
 {
     interface IEredmenyLogic
     {
