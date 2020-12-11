@@ -10,6 +10,7 @@ namespace F1Stats.Data.Models
         [Key]
         public int rajtszam { get; set; }
         public string nev { get; set; }
+        [ForeignKey("Csapat")]
         public string csapat_nev { get; set; }
         public int eletkor { get; set; }
         public Nullable<int> ossz_pont { get; set; }

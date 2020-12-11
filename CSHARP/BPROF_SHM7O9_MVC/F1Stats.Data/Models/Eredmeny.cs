@@ -10,7 +10,9 @@ namespace F1Stats.Data.Models
     {
         [Key]
         public int eredmenyId { get; set; }
+        [ForeignKey("Versenyhetvege")]
         public int versenyhetvege_szam { get; set; }
+        [ForeignKey("Versenyzo")]
         public int rajtszam { get; set; }
         public Nullable<int> helyezes { get; set; }
         public Nullable<int> pont { get; set; }

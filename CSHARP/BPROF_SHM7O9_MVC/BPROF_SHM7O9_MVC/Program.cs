@@ -242,7 +242,7 @@
                     Console.WriteLine("A jelenlegi eredmények\n");
                     foreach (var item in eredmenylogic.GetAllEredmeny())
                     {
-                        Console.WriteLine(item.versenyhetvege_szam + "\t" + item.helyezes + "\t" + item.pont);
+                        Console.WriteLine(item.versenyhetvege_szam + "\t" + item.rajtszam + "\t" + item.helyezes + "\t" + item.pont);
                     }
 
                     break;
