@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace F1Stats.Data.Models
 {
     public class Versenyzo
     {
+        [Key]
         public int rajtszam { get; set; }
         public string nev { get; set; }
         public string csapat_nev { get; set; }

@@ -2,10 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class Versenyhetvege
     {
         public string nev { get; set; }
+        [Key]
         public int VERSENYHETVEGE_SZAMA { get; set; }
         public int hossz { get; set; }
         public int kor { get; set; }

@@ -7,7 +7,7 @@ using F1Stats.Repository;
 
 namespace F1Stats.Logic
 {
-    class VersenyzoLogic
+    public class VersenyzoLogic
     {
         public IVersenyzoRepository versenyzoRepo;
 

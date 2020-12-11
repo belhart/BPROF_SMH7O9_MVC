@@ -9,4 +9,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\F1Stats.Data\F1Stats.Data.csproj" />
+    <ProjectReference Include="..\F1Stats.Logic\F1Stats.Logic.csproj" />
+    <ProjectReference Include="..\F1Stats.Repository\F1Stats.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
