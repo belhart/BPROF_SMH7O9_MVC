@@ -1,0 +1,22 @@
+﻿@model F1Stats.Data.Models.Eredmeny
+
+<h2>Edit of one result</h2>
+
+@using (Html.BeginForm("Edit", "Eredmeny"))
+{
+    @Html.ValidationSummary()
+
+    @Html.AntiForgeryToken()
+
+    @Html.Hidden("editAction", ViewData["editAction"].ToString());
+
+    <div class="editor-label">@Html.LabelFor(m => m.versenyhetvege_szam)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.versenyhetvege_szam)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.helyezes)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.helyezes)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.helyezes)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.helyezes)</div>
+    <input type="submit" value="SEND" />
+}
