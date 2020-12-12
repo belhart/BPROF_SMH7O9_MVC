@@ -1,0 +1,34 @@
+﻿@model F1Stats.Data.Models.Versenyhetvege
+@{
+    ViewBag.Title = "VersenyhetvegeDetails";
+}
+
+<h2>Datasheet of one race weekend</h2>
+@Html.ActionLink("Back to the list", "Index");
+
+<table>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.nev)</td>
+        <td>@Html.DisplayFor(m => m.nev)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.VERSENYHETVEGE_SZAMA)</td>
+        <td>@Html.DisplayFor(m => m.VERSENYHETVEGE_SZAMA)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.hossz)</td>
+        <td>@Html.DisplayFor(m => m.hossz)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.kor)</td>
+        <td>@Html.DisplayFor(m => m.kor)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.idopont)</td>
+        <td>@Html.DisplayFor(m => m.idopont)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.helyszin)</td>
+        <td>@Html.DisplayFor(m => m.helyszin)</td>
+    </tr>
+</table>
