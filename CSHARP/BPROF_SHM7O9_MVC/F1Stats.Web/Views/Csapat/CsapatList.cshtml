@@ -1,0 +1,31 @@
+﻿@using F1Stats.Data.Models; 
+@model IEnumerable<F1Stats.Data.Models.Csapat>
+
+<h2>List of teams</h2>
+
+@if (Model.Count() == 0)
+{
+    <p>No data in the database</p>
+}
+else
+{
+    <table>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.First().csapat_nev)</th>
+            <th>@Html.DisplayNameFor(m => m.First().motor)</th>
+            <th>Datasheet</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => item.csapat_nev)</td>
+                <td>>@Html.DisplayFor(m => item.motor)</td>
+                <td>@Html.ActionLink("[SHOW]", "Details", new { name = item.csapat_nev })</td>
+                <td>@Html.ActionLink("[DEL]", "Remove", new { name = item.csapat_nev })</td>
+                <td>@Html.ActionLink("[EDIT]", "Edit", new { name = item.csapat_nev })</td>
+            </tr>
+        }
+    </table>
+}

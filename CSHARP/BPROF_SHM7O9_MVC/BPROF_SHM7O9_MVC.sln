@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "F1Stats.Program", "BPROF_SH
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "F1Stats.Data", "F1Stats.Data\F1Stats.Data.csproj", "{3EF06B87-C7DE-4515-9A71-A7B361360EED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F1Stats.Repository", "F1Stats.Repository\F1Stats.Repository.csproj", "{C63800AB-68D1-4120-BA98-625A9B14E72B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "F1Stats.Repository", "F1Stats.Repository\F1Stats.Repository.csproj", "{C63800AB-68D1-4120-BA98-625A9B14E72B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F1Stats.Logic", "F1Stats.Logic\F1Stats.Logic.csproj", "{5C2DE04B-19FE-48C3-AFA4-EE1566E42738}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "F1Stats.Logic", "F1Stats.Logic\F1Stats.Logic.csproj", "{5C2DE04B-19FE-48C3-AFA4-EE1566E42738}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F1Stats.Web", "F1Stats.Web\F1Stats.Web.csproj", "{BF2EECAD-F116-4762-999E-AE11AE2CD4DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5C2DE04B-19FE-48C3-AFA4-EE1566E42738}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C2DE04B-19FE-48C3-AFA4-EE1566E42738}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C2DE04B-19FE-48C3-AFA4-EE1566E42738}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF2EECAD-F116-4762-999E-AE11AE2CD4DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF2EECAD-F116-4762-999E-AE11AE2CD4DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF2EECAD-F116-4762-999E-AE11AE2CD4DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF2EECAD-F116-4762-999E-AE11AE2CD4DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

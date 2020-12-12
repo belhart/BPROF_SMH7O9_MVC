@@ -78,7 +78,7 @@
             this.db.SaveChanges();
         }
 
-        public bool UpdateCsapatTeljes(string name, string motor, int versenyekszama, int gyozelmek)
+        public bool UpdateCsapatTeljes(string name, string motor, int? versenyekszama, int? gyozelmek)
         {
             try
             {

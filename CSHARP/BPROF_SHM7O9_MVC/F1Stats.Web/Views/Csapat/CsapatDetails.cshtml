@@ -1,0 +1,26 @@
+﻿@model F1Stats.Data.Models.Csapat
+@{
+    ViewBag.Title = "CsapatDetails";
+}
+
+<h2>Datasheet of one team</h2>
+@Html.ActionLink("Back to the list", "Index");
+
+<table>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.csapat_nev)</td>
+        <td>@Html.DisplayFor(m => m.csapat_nev)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.motor)</td>
+        <td>@Html.DisplayFor(m => m.motor)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.versenyek_szama)</td>
+        <td>@Html.DisplayFor(m => m.versenyek_szama)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.gyozelmek)</td>
+        <td>@Html.DisplayFor(m => m.gyozelmek)</td>
+    </tr>
+</table>

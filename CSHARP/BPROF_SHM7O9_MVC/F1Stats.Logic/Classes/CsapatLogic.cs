@@ -61,7 +61,7 @@ namespace F1Stats.Logic
             this.csapatRepo.CreateCsapat(name, motor, versenyekszama, gyozelmek);
         }
 
-        public bool UpdateCsapat(string name, string motor, int versenyekszama, int gyozelmek)
+        public bool UpdateCsapat(string name, string motor, int? versenyekszama, int? gyozelmek)
         {
             return this.csapatRepo.UpdateCsapatTeljes(name, motor, versenyekszama, gyozelmek);
         }
