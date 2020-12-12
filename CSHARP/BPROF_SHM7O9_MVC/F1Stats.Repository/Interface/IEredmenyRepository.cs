@@ -18,6 +18,8 @@ namespace F1Stats.Repository
 
         void UpdatePont(int eredmenyId, int newPont);
 
-        void DeleteEredmeny(int eredmenyId);
+        bool DeleteEredmeny(int eredmenyId);
+
+        bool UpdateEredmenyTeljes(int id, int versenyhetvege_szam, int rajtszam, int helyezes, int pont);
     }
 }

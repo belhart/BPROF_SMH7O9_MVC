@@ -36,10 +36,19 @@ namespace F1Stats.Logic
             this.eredmenyRepo.CreateEredmeny(eredmeny);
         }
 
-        public void DeleteEredmeny(int eredmenyId)
+        public bool DeleteEredmeny(int eredmenyId)
         {
-            this.eredmenyRepo.DeleteEredmeny(eredmenyId);
+            return this.eredmenyRepo.DeleteEredmeny(eredmenyId);
         }
 
+        public void CreateEredmeny(int id, int versenyhetvege_szam, int helyezes, int pont)
+        {
+            
+        }
+
+        public bool UpdateEredmeny(int id, int versenyhetvege_szam, int rajtszam, int helyezes, int pont)
+        {
+            return this.eredmenyRepo.UpdateEredmenyTeljes(id, versenyhetvege_szam, rajtszam, helyezes,pont);
+        }
     }
 }

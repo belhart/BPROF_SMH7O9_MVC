@@ -70,7 +70,7 @@ namespace F1Stats.Web.Controllers
                 }
                 else
                 {
-                    bool success = logic.UpdateEredmeny(csapat.csapat_nev, csapat.motor, csapat.versenyek_szama, csapat.gyozelmek);
+                    bool success = logic.UpdateEredmeny(eredmeny.eredmenyId, eredmeny.versenyhetvege_szam, eredmeny.rajtszam, eredmeny.helyezes, eredmeny.pont);
                     if (!success) TempData["editResult"] = "Edit FAIL";
                 }
                 return RedirectToAction(nameof(Index));

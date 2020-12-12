@@ -14,8 +14,8 @@ namespace F1Stats.Data.Models
         public int versenyhetvege_szam { get; set; }
         [ForeignKey("Versenyzo")]
         public int rajtszam { get; set; }
-        public Nullable<int> helyezes { get; set; }
-        public Nullable<int> pont { get; set; }
+        public int helyezes { get; set; }
+        public int pont { get; set; }
         public virtual Versenyhetvege Versenyhetvege { get; set; }
         public virtual Versenyzo Versenyzo { get; set; }
     }

@@ -1,5 +1,6 @@
 ﻿namespace F1Stats.Repository
 {
+    using System;
     using System.Linq;
     using F1Stats.Data;
     using F1Stats.Data.Models;
@@ -19,10 +20,18 @@
             this.db.SaveChanges();
         }
 
-        public void DeleteEredmeny(int eredmenyId)
+        public bool DeleteEredmeny(int eredmenyId)
         {
-            this.db.Eredmeny.Remove(this.GetOne(eredmenyId));
-            this.db.SaveChanges();
+            try
+            {
+                this.db.Eredmeny.Remove(this.GetOne(eredmenyId));
+                this.db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public IQueryable<Eredmeny> GetAll()
@@ -47,6 +56,24 @@
             var eredmeny = this.GetOne(eredmenyId);
             eredmeny.pont = newPont;
             this.db.SaveChanges();
+        }
+
+        public bool UpdateEredmenyTeljes(int id, int versenyhetvege_szam, int rajtszam, int helyezes, int pont)
+        {
+            try
+            {
+                var eredmeny = this.GetOne(id);
+                eredmeny.versenyhetvege_szam = versenyhetvege_szam;
+                eredmeny.rajtszam = rajtszam;
+                eredmeny.helyezes = helyezes;
+                eredmeny.pont = pont;
+                this.db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }
