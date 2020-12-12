@@ -8,7 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using F1Stats.Logic;
-using F1Stats.Data.Models;
 
 namespace F1Stats.Web
 {
@@ -26,6 +25,9 @@ namespace F1Stats.Web
         {
             services.AddControllersWithViews();
             services.AddTransient<CsapatLogic, CsapatLogic>();
+            services.AddTransient<VersenyzoLogic, VersenyzoLogic>();
+            services.AddTransient<EredmenyLogic, EredmenyLogic>();
+            services.AddTransient<VersenyhetvegeLogic, VersenyhetvegeLogic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

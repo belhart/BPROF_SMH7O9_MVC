@@ -1,0 +1,32 @@
+﻿@model F1Stats.Data.Models.Versenyzo
+
+<h2>Edit of one racer</h2>
+
+@using (Html.BeginForm("Edit", "Versenyzo"))
+{
+    @Html.ValidationSummary()
+
+    @Html.AntiForgeryToken()
+
+    @Html.Hidden("editAction", ViewData["editAction"].ToString());
+
+    <div class="editor-label">@Html.LabelFor(m => m.rajtszam)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.rajtszam)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.nev)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.nev)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.csapat_nev)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.csapat_nev)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.eletkor)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.eletkor)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.ossz_pont)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.ossz_pont)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.idenybeli_pont)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.idenybeli_pont)</div>
+
+    <input type="submit" value="SEND" />
+}
