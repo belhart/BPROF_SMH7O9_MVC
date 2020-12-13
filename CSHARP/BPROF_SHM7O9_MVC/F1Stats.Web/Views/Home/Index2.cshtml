@@ -1,8 +1,5 @@
 ﻿@model F1Stats.Web.Models.HomeViewModel
-@{
-    ViewData["Title"] = "Home Page";
-}
 
-@Html.Partial("HomeTeamWithMostPoints", Model.TeamWithMostPoints)
+@Html.Partial("HomeTeamWithPoints", Model.TeamWithMostPoints)
 @Html.Partial("HomeSumPointsList", Model.ListOfSumPointResult)
 @Html.Partial("HomeEngineSumPointsList", Model.ListOfEnginePointResult)
