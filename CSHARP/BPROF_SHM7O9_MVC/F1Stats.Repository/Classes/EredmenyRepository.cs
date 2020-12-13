@@ -14,6 +14,11 @@
             this.db = new F1StatsDbContext();
         }
 
+        public EredmenyRepository(F1StatsDbContext db)
+        {
+            this.db = db;
+        }
+
         public void CreateEredmeny(Eredmeny eredmeny)
         {
             this.db.Eredmeny.Add(eredmeny);

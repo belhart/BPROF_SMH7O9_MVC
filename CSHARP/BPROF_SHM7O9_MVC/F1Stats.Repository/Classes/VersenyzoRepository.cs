@@ -14,6 +14,11 @@
             this.db = new F1StatsDbContext();
         }
 
+        public VersenyzoRepository(F1StatsDbContext db)
+        {
+            this.db = db;
+        }
+
         public void CreateVersenyzo(Versenyzo versenyzo)
         {
             this.db.Versenyzo.Add(versenyzo);
