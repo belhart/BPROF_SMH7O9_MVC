@@ -53,6 +53,23 @@
             return query.ToList();
         }
 
+        public static IList<ElertPont> TestGetDriversPoints(IEredmenyRepository eRepo, IVersenyzoRepository vRepo)
+        {
+            EredmenyLogic eredmenyRepo = new EredmenyLogic(eRepo);
+            VersenyzoLogic verRepo = new VersenyzoLogic(vRepo);
+            var query = from x in eredmenyRepo.GetAllEredmeny()
+                        group x by x.rajtszam into g
+                        join y in verRepo.GetAllVersenyzo() on g.Key equals y.rajtszam
+                        select new ElertPont
+                        {
+                            DriverName = y.nev,
+                            Points = g.Sum(z => z.pont),
+                        };
+            var res = query.ToList();
+            res.Sort(SortByPoints);
+            return res;
+        }
+
         public static IList<string> GetResultWithEngineNames(int raceNumber)
         {
             F1StatsDbContext db = new F1StatsDbContext();
@@ -63,6 +80,41 @@
                         select x.Versenyzo.Csapat.motor;
 
             return query.ToList();
+        }
+
+        public static int SortByPoints(ElertPont x, ElertPont y)
+        {
+            if (x == null)
+            {
+                if (y == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            else
+            {
+                if (y == null)
+                {
+                    return -1;
+                }
+                else
+                {
+                    int retval = x.Points.CompareTo(y.Points);
+
+                    if (retval != 0)
+                    {
+                        return -1*retval;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
         }
     }
 }
