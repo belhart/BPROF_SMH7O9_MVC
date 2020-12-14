@@ -134,5 +134,19 @@ namespace F1Stats.Logic.Test
             this.versenyzoRepo.Verify(repo => repo.GetAll(), Times.Once);
             this.versenyzoRepo.Verify(repo => repo.GetOne(It.IsAny<int>()), Times.Never);
         }
+
+        [Test]
+        public void TestResultOfOneWeekendByEngine()
+        {
+            List<string> engineResult = new List<string>()
+            {
+                "Mercedes",
+                "Ferrari",
+                "Mercedes",
+                "Mercedes"
+            };
+            var result = OsszetettLogic.TestGetResultWithEngineNames(1, this.eredmenyRepo.Object, this.csapatRepo.Object, this.versenyzoRepo.Object);
+            Assert.That(result, Is.EquivalentTo(engineResult));
+        }
     }
 }

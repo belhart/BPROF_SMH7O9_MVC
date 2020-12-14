@@ -82,6 +82,21 @@
             return query.ToList();
         }
 
+        public static IList<string> TestGetResultWithEngineNames(int raceNumber, IEredmenyRepository eRepo, ICsapatRepository csRepo, IVersenyzoRepository vRepo)
+        {
+            EredmenyLogic eredmenyRepo = new EredmenyLogic(eRepo);
+            CsapatLogic csapatLogic = new CsapatLogic(csRepo);
+            VersenyzoLogic vLogic = new VersenyzoLogic(vRepo);
+            var query = from x in eredmenyRepo.GetAllEredmeny()
+                        where x.versenyhetvege_szam == raceNumber
+                        join y in vLogic.GetAllVersenyzo() on x.rajtszam equals y.rajtszam
+                        join z in csapatLogic.GetAllCsapat() on y.csapat_nev equals z.csapat_nev
+                        orderby x.helyezes
+                        select z.motor;
+
+            return query.ToList();
+        }
+
         public static int SortByPoints(ElertPont x, ElertPont y)
         {
             if (x == null)
