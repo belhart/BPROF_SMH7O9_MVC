@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using F1Stats.Data;
+    using F1Stats.Data.Models;
     using F1Stats.Repository;
 
     public class OsszetettLogic
@@ -10,16 +11,30 @@
         public static string GetTeamWithMostPoints()
         {
             F1StatsDbContext db = new F1StatsDbContext();
-            VersenyzoLogic verRepo = new VersenyzoLogic(new VersenyzoRepository(db));
-            var query = from x in verRepo.GetAllVersenyzo()
+            VersenyzoLogic verLogic = new VersenyzoLogic(new VersenyzoRepository(db));
+            var query = from x in verLogic.GetAllVersenyzo()
                         orderby x.ossz_pont descending
                         group x by x.Csapat.csapat_nev into g
                         select new
                         {
                             CsapatNev = g.Key,
-                            Osszpont = g.Sum(y => y.ossz_pont),
                         };
-            return query.First().CsapatNev.ToString() + " " + query.First().Osszpont.ToString();
+            return query.First().CsapatNev.ToString();
+        }
+
+        public static string TestGetTeamWithMostPoints(IVersenyzoRepository vRepo, ICsapatRepository csRepo)
+        {
+            VersenyzoLogic verLogic = new VersenyzoLogic(vRepo);
+            CsapatLogic csLogic = new CsapatLogic(csRepo);
+            var query = from x in verLogic.GetAllVersenyzo()
+                        orderby x.ossz_pont descending
+                        join y in csLogic.GetAllCsapat() on x.csapat_nev equals y.csapat_nev
+                        group x by y.csapat_nev into g
+                        select new
+                        {
+                            CsapatNev = g.Key,
+                        };
+            return query.First().CsapatNev.ToString();
         }
 
         public static IList<ElertPont> GetDriversPoints()
@@ -33,9 +48,8 @@
                         select new ElertPont
                         {
                             DriverName = y.nev,
-                            Points = g.Sum(z => z.pont), // ez jó? :thinking:
+                            Points = g.Sum(z => z.pont),
                         };
-
             return query.ToList();
         }
 

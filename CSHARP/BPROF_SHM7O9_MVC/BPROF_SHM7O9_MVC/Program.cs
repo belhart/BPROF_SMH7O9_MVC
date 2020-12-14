@@ -275,12 +275,12 @@
 
         public static void OtodikMenupont()
         {
-            /*foreach (var item in Blogic.GetDriversPoints())
+            foreach (var item in OsszetettLogic.GetDriversPoints())
             {
                 Console.WriteLine(item.DriverName + " " + item.Points);
             }
 
-            Console.ReadLine();*/
+            Console.ReadLine();
         }
 
         public static void HatodikMenupont()

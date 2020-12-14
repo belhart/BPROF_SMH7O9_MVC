@@ -1,5 +1,6 @@
 ﻿using F1Stats.Data.Models;
 using F1Stats.Repository;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Moq;
 using NuGet.Frameworks;
 using NUnit.Framework;
@@ -16,7 +17,6 @@ namespace F1Stats.Logic.Test
         Mock<IVersenyzoRepository> versenyzoRepo;
         Mock<IEredmenyRepository> eredmenyRepo;
         Mock<IVersenyhetvegeRepository> vhRepo;
-        string teamWithMostPointsWithCurrentDrivers;
 
         [SetUp]
         public void Setup()
@@ -29,7 +29,7 @@ namespace F1Stats.Logic.Test
             {
                 new Versenyzo() { nev = "Hamilton", csapat_nev = "Mercedes" , eletkor = 25, idenybeli_pont = 0, rajtszam = 1, ossz_pont = 26},
                 new Versenyzo() { nev = "Bottas", csapat_nev = "Mercedes" , eletkor = 28, idenybeli_pont = 0, rajtszam = 2, ossz_pont = 12},
-                new Versenyzo() { nev = "Leklerk", csapat_nev = "Ferrari" , eletkor = 23, idenybeli_pont = 0, rajtszam = 3, ossz_pont = 16},
+                new Versenyzo() { nev = "Leklerk", csapat_nev = "Ferrari" , eletkor = 23, idenybeli_pont = 0, rajtszam = 3, ossz_pont = 55},
                 new Versenyzo() { nev = "Latifi", csapat_nev = "Williams" , eletkor = 24, idenybeli_pont = 0, rajtszam = 4, ossz_pont = 1},
             };
             List<Csapat> csapatok = new List<Csapat>()
@@ -103,6 +103,16 @@ namespace F1Stats.Logic.Test
             Assert.That(Is.Equals(eredmeny,epectedEredmeny));
             eredmenyRepo.Verify(repo => repo.GetOne(It.IsAny<int>()), Times.Once);
             eredmenyRepo.Verify(repo => repo.GetAll(), Times.Never);
+        }
+
+        [Test]
+        public void TestTeamWithMostPointsWithCurrentDrivers()
+        {
+            string teamWithMostPointsWithCurrentDrivers = OsszetettLogic.TestGetTeamWithMostPoints(this.versenyzoRepo.Object, this.csapatRepo.Object);
+            string expectedTeam = "Ferrari";
+            Assert.That(teamWithMostPointsWithCurrentDrivers, Is.EqualTo(expectedTeam));
+            this.versenyzoRepo.Verify(repo => repo.GetAll(), Times.Once);
+            this.csapatRepo.Verify(repo => repo.GetAll(), Times.Once);
         }
     }
 }
