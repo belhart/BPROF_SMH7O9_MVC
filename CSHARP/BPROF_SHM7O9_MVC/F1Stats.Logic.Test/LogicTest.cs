@@ -101,7 +101,8 @@ namespace F1Stats.Logic.Test
             var eredmeny = eLogic.GetOneEredmeny(1);
             Eredmeny epectedEredmeny = new Eredmeny() { eredmenyId = 2, versenyhetvege_szam = 1, rajtszam = 3, helyezes = 2, pont = 15 };
             Assert.That(Is.Equals(eredmeny,epectedEredmeny));
-
+            eredmenyRepo.Verify(repo => repo.GetOne(It.IsAny<int>()), Times.Once);
+            eredmenyRepo.Verify(repo => repo.GetAll(), Times.Never);
         }
     }
 }
