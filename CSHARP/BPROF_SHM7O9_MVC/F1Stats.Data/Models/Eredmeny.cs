@@ -18,5 +18,23 @@ namespace F1Stats.Data.Models
         public int pont { get; set; }
         public virtual Versenyhetvege Versenyhetvege { get; set; }
         public virtual Versenyzo Versenyzo { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Eredmeny)
+            {
+                Eredmeny other = obj as Eredmeny;
+                return this.eredmenyId == other.eredmenyId &&
+                    this.versenyhetvege_szam == other.versenyhetvege_szam &&
+                    this.rajtszam == other.rajtszam &&
+                    this.helyezes == other.helyezes &&
+                    this.pont == other.pont;
+            }
+            return false;
+        }
+        public override int GetHashCode()
+        {
+            return eredmenyId;
+        }
     }
 }
