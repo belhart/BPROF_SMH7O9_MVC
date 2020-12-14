@@ -147,6 +147,9 @@ namespace F1Stats.Logic.Test
             };
             var result = OsszetettLogic.TestGetResultWithEngineNames(1, this.eredmenyRepo.Object, this.csapatRepo.Object, this.versenyzoRepo.Object);
             Assert.That(result, Is.EquivalentTo(engineResult));
+            this.eredmenyRepo.Verify(repo => repo.GetAll(), Times.Once);
+            this.versenyzoRepo.Verify(repo => repo.GetAll(), Times.Once);
+            this.versenyzoRepo.Verify(repo => repo.GetAll(), Times.Once);
         }
     }
 }
