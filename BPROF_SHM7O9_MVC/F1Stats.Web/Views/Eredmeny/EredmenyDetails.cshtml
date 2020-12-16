@@ -4,7 +4,7 @@
 }
 
 <h2>Datasheet of one result</h2>
-@Html.ActionLink("Back to the list", "Index");
+@Html.ActionLink("Back to the list", "Index")
 
 <table>
     <tr>
@@ -13,7 +13,7 @@
     </tr>
     <tr>
         <td>@Html.DisplayNameFor(m => m.versenyhetvege_szam)</td>
-        <td>@Html.DisplayFor(m => m.versenyhetvege_szam)</td>
+        <td><a href="/Home/EngineResult/@Model.versenyhetvege_szam">@Html.DisplayFor(m => m.versenyhetvege_szam)</a></td>
     </tr>
     <tr>
         <td>@Html.DisplayNameFor(m => m.rajtszam)</td>

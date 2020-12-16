@@ -21,7 +21,6 @@ namespace F1Stats.Web.Controllers
             this.vm = new HomeViewModel();
             vm.TeamWithMostPoints = OsszetettLogic.GetTeamWithMostPoints();
             vm.ListOfSumPointResult = OsszetettLogic.GetDriversPoints().ToList();
-            vm.ListOfEnginePointResult = OsszetettLogic.GetResultWithEngineNames(15).ToList();
         }
 
         public IActionResult Index()
@@ -32,6 +31,12 @@ namespace F1Stats.Web.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult EngineResult(int id)
+        {
+            vm.ListOfEnginePointResult = OsszetettLogic.GetResultWithEngineNames(id).ToList();
+            return View("HomeEngineSumPointsList", vm.ListOfEnginePointResult);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

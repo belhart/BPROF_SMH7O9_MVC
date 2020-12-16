@@ -50,7 +50,9 @@
                             DriverName = y.nev,
                             Points = g.Sum(z => z.pont),
                         };
-            return query.ToList();
+            var res = query.ToList();
+            res.Sort(SortByPoints);
+            return res;
         }
 
         public static IList<ElertPont> TestGetDriversPoints(IEredmenyRepository eRepo, IVersenyzoRepository vRepo)
