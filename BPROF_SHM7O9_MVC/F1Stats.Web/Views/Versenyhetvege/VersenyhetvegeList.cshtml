@@ -11,7 +11,7 @@ else
     <table>
         <tr>
             <th>@Html.DisplayNameFor(m => m.First().nev)</th>
-            <th>@Html.DisplayNameFor(m => m.First().VERSENYHETVEGE_SZAMA)</th>
+            <th>Versenyhetvege szama</th>
             <th>Datasheet</th>
             <th>Delete</th>
             <th>Edit</th>
@@ -20,7 +20,7 @@ else
         {
             <tr>
                 <td>@Html.DisplayFor(m => item.nev)</td>
-                <td>>@Html.DisplayFor(m => item.VERSENYHETVEGE_SZAMA)</td>
+                <td>@Html.DisplayFor(m => item.VERSENYHETVEGE_SZAMA)</td>
                 <td>@Html.ActionLink("[SHOW]", "Details", new { id = item.VERSENYHETVEGE_SZAMA })</td>
                 <td>@Html.ActionLink("[DEL]", "Remove", new { id = item.VERSENYHETVEGE_SZAMA })</td>
                 <td>@Html.ActionLink("[EDIT]", "Edit", new { id = item.VERSENYHETVEGE_SZAMA })</td>
