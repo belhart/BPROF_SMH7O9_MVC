@@ -5,10 +5,13 @@ using System.Threading.Tasks;
 using F1Stats.Data.Models;
 using F1Stats.Logic;
 using F1Stats.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace F1Stats.Web.Controllers
 {
+    [Route("[controller]")]
+    [ApiController]
     public class VersenyhetvegeController : ControllerBase
     {
         IVersenyhetvegeLogic logic;
@@ -18,33 +21,34 @@ namespace F1Stats.Web.Controllers
             logic = versenyhetvegeLogic;
         }
 
-        private Versenyhetvege GetVersenyhetvegeModel(int versenySzam)
+        [HttpGet("{id:int}")]
+        public Versenyhetvege GetOneVersenyhetvege(int id)
         {
-            return this.logic.GetOneVersenyhetvege(versenySzam);
+            return this.logic.GetOneVersenyhetvege(id);
         }
 
-        // GET: Versenyhetvege
-        public ActionResult Index()
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult DeleteVersenyhetvege(int id)
         {
+            this.logic.DeleteVersenyhetvege(id);
+            return Ok();
         }
 
-        // GET: Versenyhetvege/Details/5
-        public ActionResult Details(int id)
-        {
-        }
-        //GET
-        public ActionResult Remove(int id)
-        {
-        }
-
-        public ActionResult Edit(int id)
-        {
-        }
-
-        //POST
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Edit(Versenyhetvege versenyhetvege, string editAction)
+        public IActionResult CreateVersenyhetvege([FromBody] Versenyhetvege versenyhetvege)
         {
+            this.logic.CreateVersenyhetvege(versenyhetvege);
+            return Ok();
+        }
+
+        [HttpPut("{oldId}")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult UpdateVersenyhetvege(int oldId, [FromBody] Versenyhetvege versenyhetvege)
+        {
+            //this.logic.UpdateVersenyzo(oldId, versenyhetvege);
+            return Ok();
         }
     }
 }
