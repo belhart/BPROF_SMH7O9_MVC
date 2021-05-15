@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using F1Stats.Logic;
+using Microsoft.AspNetCore.Identity;
+using F1Stats.Data;
+using System.IO;
 
 namespace F1Stats.Web
 {
@@ -23,35 +26,54 @@ namespace F1Stats.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllers();
             services.AddTransient<CsapatLogic, CsapatLogic>();
             services.AddTransient<VersenyzoLogic, VersenyzoLogic>();
             services.AddTransient<EredmenyLogic, EredmenyLogic>();
             services.AddTransient<VersenyhetvegeLogic, VersenyhetvegeLogic>();
+            services.AddTransient<AuthLogic, AuthLogic>();
+
+            services.AddDbContext<F1StatsDbContext>();
+
+
+            services.AddIdentity<IdentityUser, IdentityRole>(
+                     option =>
+                     {
+                         option.Password.RequireDigit = false;
+                         option.Password.RequiredLength = 6;
+                         option.Password.RequireNonAlphanumeric = false;
+                         option.Password.RequireUppercase = false;
+                         option.Password.RequireLowercase = false;
+                     }
+                 ).AddEntityFrameworkStores<F1StatsDbContext>()
+                 .AddDefaultTokenProviders();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
+
+            if (env.IsProduction())
             {
-                app.UseExceptionHandler("/Home/Error");
+                var config =
+                new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("Appsettings.Production.json", true)
+                    .AddEnvironmentVariables()
+                    .Build();
             }
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            //app.UseAuthorization();
-
+            app.UseCors();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }
