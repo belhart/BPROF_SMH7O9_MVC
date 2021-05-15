@@ -6,9 +6,12 @@ using F1Stats.Web.Models;
 using F1Stats.Logic;
 using Microsoft.AspNetCore.Mvc;
 using F1Stats.Data.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace F1Stats.Web.Controllers
 {
+    [Route("[controller]")]
+    [ApiController]
     public class CsapatController : ControllerBase
     {
         ICsapatLogic logic;
@@ -17,33 +20,34 @@ namespace F1Stats.Web.Controllers
         {
             this.logic = csapatLogic;
         }
-        private Csapat GetCsapatModel(string nev)
+        [HttpGet("{id:string}")]
+        public Csapat GetOneCsapat(string id)
         {
-            return this.logic.GetOneCsapat(nev);
+            return this.logic.GetOneCsapat(id);
         }
 
-        // GET: Csapat
-        public ActionResult Index()
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult DeleteCsapat(string id)
         {
+            this.logic.DeleteCsapat(id);
+            return Ok();
         }
 
-        // GET: Csapat/Details/5
-        public ActionResult Details(string name)
-        {
-        }
-        //GET
-        public ActionResult Remove(string name)
-        {
-        }
-
-        public ActionResult Edit(string name)
-        {
-        }
-
-        //POST
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Edit(Csapat csapat, string editAction)
+        public IActionResult CreateCsapat([FromBody] Csapat csapat)
         {
+            this.logic.CreateCsapat(csapat);
+            return Ok();
+        }
+
+        [HttpPut("{oldId}")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult UpdateCsapat(int oldId, [FromBody] Csapat csapat)
+        {
+            //this.logic.UpdateVersenyzo(oldId, eredmeny);
+            return Ok();
         }
     }
 }
