@@ -1,4 +1,6 @@
 ﻿using F1Stats.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.Text;
 
 namespace F1Stats.Data
 {
-    public class F1StatsDbContext : DbContext
+    public class F1StatsDbContext : IdentityDbContext<IdentityUser>
     {
         public F1StatsDbContext()
         {
