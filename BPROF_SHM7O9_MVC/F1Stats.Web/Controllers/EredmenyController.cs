@@ -5,12 +5,15 @@ using System.Threading.Tasks;
 using F1Stats.Data.Models;
 using F1Stats.Logic;
 using F1Stats.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.Language.Extensions;
 
 namespace F1Stats.Web.Controllers
 {
+    [Route("[controller]")]
+    [ApiController]
     public class EredmenyController : ControllerBase
     {
         IEredmenyLogic logic;
@@ -19,33 +22,34 @@ namespace F1Stats.Web.Controllers
         {
             this.logic = eredmenyLogic;
         }
-        private Eredmeny GetEredmenyModel(int id)
+        [HttpGet("{id:int}")]
+        public Eredmeny GetOneEredmeny(int id)
         {
             return this.logic.GetOneEredmeny(id);
         }
 
-        // GET: Eredmeny
-        public ActionResult Index()
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult DeleteEredmeny(int id)
         {
+            this.logic.DeleteEredmeny(id);
+            return Ok();
         }
 
-        // GET: Eredmeny/Details/5
-        public ActionResult Details(int id)
-        {
-        }
-        //GET
-        public ActionResult Remove(int id)
-        {
-        }
-
-        public ActionResult Edit(int id)
-        {
-        }
-
-        //POST
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Edit(Eredmeny eredmeny, string editAction)
+        public IActionResult CreateEredmeny([FromBody] Eredmeny eredmeny)
         {
+            this.logic.CreateEredmeny(eredmeny);
+            return Ok();
+        }
+
+        [HttpPut("{oldId}")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult UpdateEredmeny(int oldId, [FromBody] Eredmeny eredmeny)
+        {
+            //this.logic.UpdateVersenyzo(oldId, eredmeny);
+            return Ok();
         }
     }
 }
