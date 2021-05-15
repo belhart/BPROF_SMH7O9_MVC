@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using F1Stats.Logic;
 using F1Stats.Web.Models;
 using F1Stats.Data.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace F1Stats.Web.Controllers
 {
+    [Route("[controller]")]
+    [ApiController]
     public class VersenyzoController : ControllerBase
     {
         IVersenyzoLogic logic;
@@ -18,33 +21,35 @@ namespace F1Stats.Web.Controllers
             logic = versenyzoLogic;
         }
 
-        private Versenyzo GetVersenyzoModel(int rajtszam)
+        [HttpGet("{id:int}")]
+        public Versenyzo GetOneVersenyzo(int id)
         {
-            return this.logic.GetOneVersenyzo(rajtszam);
+            return this.logic.GetOneVersenyzo(id);
         }
 
-        // GET: Versenyzo
-        public ActionResult Index()
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult DeleteVersenyzo(int id)
         {
+            this.logic.DeleteVersenyzo(id);
+            return Ok();
         }
 
-        // GET: Versenyzo/Details/5
-        public ActionResult Details(int id)
-        {
-        }
-        //GET
-        public ActionResult Remove(int id)
-        {
-        }
-
-        public ActionResult Edit(int id)
-        {
-        }
-
-        //POST
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Edit(Versenyzo versenyzo, string editAction)
+        public IActionResult CreateVersenyzo([FromBody] Versenyzo versenyzo)
         {
+            this.logic.CreateVersenyzo(versenyzo);
+            return Ok();
         }
+
+        [HttpPut("{oldId}")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult UpdateVersenyzo(int oldId, [FromBody] Versenyzo versenyzo)
+        {
+            //this.logic.UpdateVersenyzo(oldId, versenyzo);
+            return Ok();
+        }
+
     }
 }
