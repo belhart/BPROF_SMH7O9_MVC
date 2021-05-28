@@ -11,9 +11,9 @@ namespace F1Stats.Logic
     {
         public ICsapatRepository csapatRepo;
 
-        public CsapatLogic()
+        public CsapatLogic(string connectionPassword)
         {
-            this.csapatRepo = new CsapatRepository();
+            this.csapatRepo = new CsapatRepository(connectionPassword);
         }
 
         public CsapatLogic(ICsapatRepository repo)

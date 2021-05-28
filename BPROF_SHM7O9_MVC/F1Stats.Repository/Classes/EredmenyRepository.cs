@@ -9,9 +9,9 @@
     {
         private F1StatsDbContext db;
 
-        public EredmenyRepository()
+        public EredmenyRepository(string connectionPassword)
         {
-            this.db = new F1StatsDbContext();
+            this.db = new F1StatsDbContext(connectionPassword);
         }
 
         public EredmenyRepository(F1StatsDbContext db)

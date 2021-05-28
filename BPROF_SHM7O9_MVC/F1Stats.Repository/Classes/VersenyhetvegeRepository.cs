@@ -9,9 +9,9 @@
     {
         private F1StatsDbContext db;
 
-        public VersenyHetvegeRepository()
+        public VersenyHetvegeRepository(string connectionPassword)
         {
-            this.db = new F1StatsDbContext();
+            this.db = new F1StatsDbContext(connectionPassword);
         }
 
         public void CreateVersenyhetvege(string nev, int versenySzama, int hossz, int kor, DateTime idopont, string helyszin)

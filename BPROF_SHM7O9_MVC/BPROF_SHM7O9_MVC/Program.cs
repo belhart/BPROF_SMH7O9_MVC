@@ -9,7 +9,7 @@
     {
         public static void Main(string[] args)
         {
-            int kivalsztottFoMenupont = 1;
+            /*int kivalsztottFoMenupont = 1;
             while (kivalsztottFoMenupont != 0)
             {
                 Console.Clear();
@@ -286,7 +286,7 @@
         public static void HatodikMenupont()
         {
             /*Console.WriteLine(Blogic.GetTeamWithMostPoints());
-            Console.ReadLine();*/
+            Console.ReadLine();
         }
 
         public static void HetedikElsMenupont()
@@ -298,7 +298,7 @@
                 Console.WriteLine(item.ToString());
             }
 
-            Console.ReadLine();*/
+            Console.ReadLine();
         }
 
         public static void NyolcadikMenupont()
@@ -350,11 +350,7 @@
                     Console.WriteLine("Nincs ilyen menüpont");
                     break;
             }
-        }
-
-        public static void VersenyzoModositas()
-        {
-
+        }*/
         }
     }
 }

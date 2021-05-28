@@ -2,83 +2,52 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using F1Stats.Web.Models;
 using F1Stats.Logic;
 using Microsoft.AspNetCore.Mvc;
 using F1Stats.Data.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace F1Stats.Web.Controllers
 {
-    public class CsapatController : Controller
+    [Route("[controller]")]
+    [ApiController]
+    public class CsapatController : ControllerBase
     {
         ICsapatLogic logic;
-        CsapatViewModel vm;
 
-        public CsapatController(CsapatLogic csapatLogic)
+        public CsapatController(ICsapatLogic csapatLogic)
         {
             this.logic = csapatLogic;
-
-            vm = new CsapatViewModel();
-            vm.EditedCsapat = new Csapat();
-            var csapatok = logic.GetAllCsapat();
-            vm.ListOfCsapatok = csapatok.ToList();
         }
-        private Csapat GetCsapatModel(string nev)
+        [HttpGet("{name}")]
+        public Csapat GetOneCsapat(string name)
         {
-            return this.logic.GetOneCsapat(nev);
+            return this.logic.GetOneCsapat(name);
         }
 
-        // GET: Csapat
-        public ActionResult Index()
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult DeleteCsapat(string id)
         {
-            ViewData["editAction"] = "AddNew";
-            return View("CsapatIndex", vm);
+            this.logic.DeleteCsapat(id);
+            return Ok();
         }
 
-        // GET: Csapat/Details/5
-        public ActionResult Details(string name)
-        {
-            return View("CsapatDetails", GetCsapatModel(name));
-        }
-        //GET
-        public ActionResult Remove(string name)
-        {
-            TempData["editResult"] = "Delete FAIL";
-            if (logic.DeleteCsapat(name)) TempData["editResult"] = "Delete OK";
-            return RedirectToAction(nameof(Index));
-        }
-
-        public ActionResult Edit(string name)
-        {
-            ViewData["editAction"] = "Edit";
-            vm.EditedCsapat = GetCsapatModel(name);
-            return View("CsapatIndex", vm);
-        }
-
-        //POST
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Edit(Csapat csapat, string editAction)
+        public IActionResult CreateCsapat([FromBody] Csapat csapat)
         {
-            if (ModelState.IsValid && csapat != null)
-            {
-                TempData["editResult"] = "Edit OK";
-                if (editAction == "AddNew")
-                {
-                    logic.CreateCsapat(csapat);
-                }
-                else
-                {
-                    bool success = logic.UpdateCsapat(csapat.csapat_nev, csapat.motor, csapat.versenyek_szama, csapat.gyozelmek);
-                    if (!success) TempData["editResult"] = "Edit FAIL";
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            else
-            {
-                ViewData["editAction"] = "Edit";
-                vm.EditedCsapat = csapat;
-                return View("CsapatIndex", vm);
-            }
+            this.logic.CreateCsapat(csapat);
+            return Ok();
+        }
+
+        [HttpPut("{oldId}")]
+        [Authorize(Roles = "Admin")]
+        public IActionResult UpdateCsapat(int oldId, [FromBody] Csapat csapat)
+        {
+            //TODO: make a new update method for the interface
+            //this.logic.UpdateVersenyzo(oldId, eredmeny);
+            return Ok();
         }
     }
 }

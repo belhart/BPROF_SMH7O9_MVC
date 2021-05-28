@@ -8,6 +8,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using F1Stats.Logic;
+using Microsoft.AspNetCore.Identity;
+using F1Stats.Data;
+using System.IO;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace F1Stats.Web
 {
@@ -23,35 +31,77 @@ namespace F1Stats.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddTransient<CsapatLogic, CsapatLogic>();
-            services.AddTransient<VersenyzoLogic, VersenyzoLogic>();
-            services.AddTransient<EredmenyLogic, EredmenyLogic>();
-            services.AddTransient<VersenyhetvegeLogic, VersenyhetvegeLogic>();
+            services.AddControllers();
+            services.AddTransient<ICsapatLogic>(x => new CsapatLogic(Configuration["DBPassword"]));
+            services.AddTransient<IVersenyzoLogic>(x => new VersenyzoLogic(Configuration["DBPassword"]));
+            services.AddTransient<IEredmenyLogic>(x => new EredmenyLogic(Configuration["DBPassword"]));
+            services.AddTransient<IVersenyhetvegeLogic>(x => new VersenyhetvegeLogic(Configuration["DBPassword"]));
+            services.AddTransient<IAuthLogic, AuthLogic>();
+
+
+            var connectionString = "server=95.111.254.24;database=projektmunka_teszt;user=projektmunka;password=" + Configuration["DBPassword"] + ";ApplicationIntent=ReadWrite;";
+            services.AddDbContext<F1StatsDbContext>(options => options.UseSqlServer(connectionString));
+
+
+            services.AddIdentity<IdentityUser, IdentityRole>(
+                     option =>
+                     {
+                         option.Password.RequireDigit = false;
+                         option.Password.RequiredLength = 6;
+                         option.Password.RequireNonAlphanumeric = false;
+                         option.Password.RequireUppercase = false;
+                         option.Password.RequireLowercase = false;
+                     }
+                 ).AddEntityFrameworkStores<F1StatsDbContext>()
+                 .AddDefaultTokenProviders();
+
+            services.AddAuthentication(option => {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options => {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = "http://www.security.org",
+                    ValidIssuer = "http://www.security.org",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("a vilag valaha volt legnehezebb es legtitkosabb szovege"))
+                };
+            });
+            services.AddAuthorization(options =>
+            {
+                options.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser()
+                    .Build();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
+
+            if (env.IsProduction())
             {
-                app.UseExceptionHandler("/Home/Error");
+                var config =
+                new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("Appsettings.Production.json", true)
+                    .AddEnvironmentVariables()
+                    .Build();
             }
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            //app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }
