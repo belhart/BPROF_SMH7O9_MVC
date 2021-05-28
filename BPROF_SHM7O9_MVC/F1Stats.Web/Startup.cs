@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace F1Stats.Web
 {
@@ -31,13 +32,15 @@ namespace F1Stats.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient<CsapatLogic, CsapatLogic>();
-            services.AddTransient<VersenyzoLogic, VersenyzoLogic>();
-            services.AddTransient<EredmenyLogic, EredmenyLogic>();
-            services.AddTransient<VersenyhetvegeLogic, VersenyhetvegeLogic>();
-            services.AddTransient<AuthLogic, AuthLogic>();
+            services.AddTransient<ICsapatLogic>(x => new CsapatLogic(Configuration["DBPassword"]));
+            services.AddTransient<IVersenyzoLogic>(x => new VersenyzoLogic(Configuration["DBPassword"]));
+            services.AddTransient<IEredmenyLogic>(x => new EredmenyLogic(Configuration["DBPassword"]));
+            services.AddTransient<IVersenyhetvegeLogic>(x => new VersenyhetvegeLogic(Configuration["DBPassword"]));
+            services.AddTransient<IAuthLogic, AuthLogic>();
 
-            services.AddDbContext<F1StatsDbContext>();
+
+            var connectionString = "server=95.111.254.24;database=projektmunka_teszt;user=projektmunka;password=" + Configuration["DBPassword"] + ";ApplicationIntent=ReadWrite;";
+            services.AddDbContext<F1StatsDbContext>(options => options.UseSqlServer(connectionString));
 
 
             services.AddIdentity<IdentityUser, IdentityRole>(
@@ -96,7 +99,6 @@ namespace F1Stats.Web
                     .AddEnvironmentVariables()
                     .Build();
             }
-            app.UseCors();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
