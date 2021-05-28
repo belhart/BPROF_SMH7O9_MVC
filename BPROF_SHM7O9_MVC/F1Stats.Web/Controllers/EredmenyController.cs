@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using F1Stats.Data.Models;
 using F1Stats.Logic;
-using F1Stats.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +17,16 @@ namespace F1Stats.Web.Controllers
     {
         IEredmenyLogic logic;
 
-        public EredmenyController(EredmenyLogic eredmenyLogic)
+        public EredmenyController(IEredmenyLogic eredmenyLogic)
         {
             this.logic = eredmenyLogic;
         }
+        [HttpGet]
+        public IEnumerable<Eredmeny> GetAllEredmeny()
+        {
+            return this.logic.GetAllEredmeny();
+        }
+
         [HttpGet("{id:int}")]
         public Eredmeny GetOneEredmeny(int id)
         {
