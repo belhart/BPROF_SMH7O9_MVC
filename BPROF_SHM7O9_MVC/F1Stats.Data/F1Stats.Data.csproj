@@ -12,9 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="F1StatsDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="F1StatsDatabase_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
