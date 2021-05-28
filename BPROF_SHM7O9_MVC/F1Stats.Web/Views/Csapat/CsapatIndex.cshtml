@@ -1,8 +1,0 @@
-﻿@model F1Stats.Web.Models.CsapatViewModel
-@{
-    ViewBag.Title = "CsapatIndex";
-}
-<h2>Csapat Index</h2>
-<p style="color:red; font-weight:bold">@TempData["editResult"]</p>
-@Html.Partial("CsapatEdit", Model.EditedCsapat)
-@Html.Partial("CsapatList", Model.ListOfCsapatok)

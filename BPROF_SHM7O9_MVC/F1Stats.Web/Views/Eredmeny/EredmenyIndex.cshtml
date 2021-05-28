@@ -1,8 +1,0 @@
-﻿@model F1Stats.Web.Models.EredmenyViewModel
-@{
-    ViewBag.Title = "EredmenyIndex";
-}
-<h2>Eredmeny Index</h2>
-<p style="color:red; font-weight:bold">@TempData["editResult"]</p>
-@Html.Partial("EredmenyEdit", Model.EditedEredmeny)
-@Html.Partial("EredmenyList", Model.ListOfEredmenyek)
