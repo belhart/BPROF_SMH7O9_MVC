@@ -11,9 +11,9 @@ namespace F1Stats.Logic
     {
         public IVersenyhetvegeRepository vhRepo;
 
-        public VersenyhetvegeLogic()
+        public VersenyhetvegeLogic(string connectionPassword)
         {
-            this.vhRepo = new VersenyHetvegeRepository();
+            this.vhRepo = new VersenyHetvegeRepository(connectionPassword);
         }
 
         public VersenyhetvegeLogic(IVersenyhetvegeRepository repo)

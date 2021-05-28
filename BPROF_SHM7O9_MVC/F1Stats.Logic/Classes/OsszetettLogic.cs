@@ -10,7 +10,7 @@
     {
         public static string GetTeamWithMostPoints()
         {
-            F1StatsDbContext db = new F1StatsDbContext();
+            F1StatsDbContext db = new F1StatsDbContext("placeholder");
             VersenyzoLogic verLogic = new VersenyzoLogic(new VersenyzoRepository(db));
             var query = from x in verLogic.GetAllVersenyzo()
                         orderby x.ossz_pont descending
@@ -39,7 +39,7 @@
 
         public static IList<ElertPont> GetDriversPoints()
         {
-            F1StatsDbContext db = new F1StatsDbContext();
+            F1StatsDbContext db = new F1StatsDbContext("placeholder");
             EredmenyLogic eredmenyRepo = new EredmenyLogic(new EredmenyRepository(db));
             VersenyzoLogic verRepo = new VersenyzoLogic(new VersenyzoRepository(db));
             var query = from x in eredmenyRepo.GetAllEredmeny()
@@ -74,7 +74,7 @@
 
         public static IList<string> GetResultWithEngineNames(int raceNumber)
         {
-            F1StatsDbContext db = new F1StatsDbContext();
+            F1StatsDbContext db = new F1StatsDbContext("placeholder");
             EredmenyLogic eredmenyRepo = new EredmenyLogic(new EredmenyRepository(db));
             var query = from x in eredmenyRepo.GetAllEredmeny()
                         where x.versenyhetvege_szam == raceNumber

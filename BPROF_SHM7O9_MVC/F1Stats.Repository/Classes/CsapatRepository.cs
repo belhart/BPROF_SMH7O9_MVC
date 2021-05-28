@@ -9,9 +9,9 @@
     {
         private F1StatsDbContext db;
 
-        public CsapatRepository()
+        public CsapatRepository(string connectionPassword)
         {
-            this.db = new F1StatsDbContext();
+            this.db = new F1StatsDbContext(connectionPassword);
         }
 
         public Csapat GetOne(string name)

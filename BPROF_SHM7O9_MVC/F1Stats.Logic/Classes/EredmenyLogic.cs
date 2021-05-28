@@ -11,9 +11,9 @@ namespace F1Stats.Logic
     {
         public IEredmenyRepository eredmenyRepo;
 
-        public EredmenyLogic()
+        public EredmenyLogic(string connectionPassword)
         {
-            this.eredmenyRepo = new EredmenyRepository();
+            this.eredmenyRepo = new EredmenyRepository(connectionPassword);
         }
 
         public EredmenyLogic(IEredmenyRepository repo)

@@ -9,9 +9,9 @@
     {
         private F1StatsDbContext db;
 
-        public VersenyzoRepository()
+        public VersenyzoRepository(string connectionPassword)
         {
-            this.db = new F1StatsDbContext();
+            this.db = new F1StatsDbContext(connectionPassword);
         }
 
         public VersenyzoRepository(F1StatsDbContext db)
