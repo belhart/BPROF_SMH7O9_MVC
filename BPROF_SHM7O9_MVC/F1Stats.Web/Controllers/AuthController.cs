@@ -14,13 +14,13 @@ namespace F1Stats.Web.Controllers
     [Route("[controller]")]
     public class AuthController : ControllerBase
     {
-        AuthLogic authLogic;
+        IAuthLogic authLogic;
 
         /// <summary>
         /// Creates a new instance of AuthController
         /// </summary>
         /// <param name="authLogic">AuthLogic object (transient)</param>
-        public AuthController(AuthLogic authLogic)
+        public AuthController(IAuthLogic authLogic)
         {
             this.authLogic = authLogic;
         }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using F1Stats.Logic;
-using F1Stats.Web.Models;
 using F1Stats.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 
@@ -16,7 +15,7 @@ namespace F1Stats.Web.Controllers
     {
         IVersenyzoLogic logic;
 
-        public VersenyzoController(VersenyzoLogic versenyzoLogic)
+        public VersenyzoController(IVersenyzoLogic versenyzoLogic)
         {
             logic = versenyzoLogic;
         }

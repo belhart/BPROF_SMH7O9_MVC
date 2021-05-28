@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using F1Stats.Data.Models;
 using F1Stats.Logic;
-using F1Stats.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +15,7 @@ namespace F1Stats.Web.Controllers
     {
         IVersenyhetvegeLogic logic;
 
-        public VersenyhetvegeController(VersenyhetvegeLogic versenyhetvegeLogic)
+        public VersenyhetvegeController(IVersenyhetvegeLogic versenyhetvegeLogic)
         {
             logic = versenyhetvegeLogic;
         }
