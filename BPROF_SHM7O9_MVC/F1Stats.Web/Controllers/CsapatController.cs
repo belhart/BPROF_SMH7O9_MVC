@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using F1Stats.Web.Models;
 using F1Stats.Logic;
 using Microsoft.AspNetCore.Mvc;
 using F1Stats.Data.Models;
@@ -16,14 +15,14 @@ namespace F1Stats.Web.Controllers
     {
         ICsapatLogic logic;
 
-        public CsapatController(CsapatLogic csapatLogic)
+        public CsapatController(ICsapatLogic csapatLogic)
         {
             this.logic = csapatLogic;
         }
-        [HttpGet("{id:string}")]
-        public Csapat GetOneCsapat(string id)
+        [HttpGet("{name}")]
+        public Csapat GetOneCsapat(string name)
         {
-            return this.logic.GetOneCsapat(id);
+            return this.logic.GetOneCsapat(name);
         }
 
         [HttpDelete("{id}")]
@@ -46,6 +45,7 @@ namespace F1Stats.Web.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult UpdateCsapat(int oldId, [FromBody] Csapat csapat)
         {
+            //TODO: make a new update method for the interface
             //this.logic.UpdateVersenyzo(oldId, eredmeny);
             return Ok();
         }
