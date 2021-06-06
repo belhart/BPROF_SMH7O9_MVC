@@ -77,6 +77,15 @@ namespace F1Stats.Web
                     .RequireAuthenticatedUser()
                     .Build();
             });
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                                  builder =>
+                                  {
+                                      builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                                  });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -99,6 +108,7 @@ namespace F1Stats.Web
                     .AddEnvironmentVariables()
                     .Build();
             }
+            app.UseCors();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
