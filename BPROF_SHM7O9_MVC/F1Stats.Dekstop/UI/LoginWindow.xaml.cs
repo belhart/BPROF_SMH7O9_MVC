@@ -29,18 +29,18 @@ namespace F1Stats.Dekstop.UI
         {
             try
             {
-                /*RestService restService = new RestService("/Auth");
+                RestService restService = new RestService("/Auth");
                 TokenViewModel tvm = await restService.Put<TokenViewModel, LoginViewModel>(new LoginViewModel()
                 {
-                    Username = username.Text,
+                    Email = username.Text,
                     Password = password.Password
                 });
                 Token = tvm.Token;
-                this.DialogResult = true;*/
+                this.DialogResult = true;
             }
-            catch (HttpRequestException)
+            catch (HttpRequestException err)
             {
-                MessageBox.Show("Wrong Password or username");
+                MessageBox.Show(err.Message);
             }
         }
 
