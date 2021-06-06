@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace F1Stats.Data.Models
 {
@@ -16,7 +17,9 @@ namespace F1Stats.Data.Models
         public int rajtszam { get; set; }
         public int helyezes { get; set; }
         public int pont { get; set; }
+        [JsonIgnore]
         public virtual Versenyhetvege Versenyhetvege { get; set; }
+        [JsonIgnore]
         public virtual Versenyzo Versenyzo { get; set; }
 
         public override bool Equals(object obj)

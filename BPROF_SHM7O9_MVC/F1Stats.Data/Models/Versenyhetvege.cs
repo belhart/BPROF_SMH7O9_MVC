@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Text.Json.Serialization;
 
     public class Versenyhetvege
     {
@@ -13,6 +14,7 @@
         public int kor { get; set; }
         public System.DateTime idopont { get; set; }
         public string helyszin { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Eredmeny> Eredmeny { get; set; }
     }
 }

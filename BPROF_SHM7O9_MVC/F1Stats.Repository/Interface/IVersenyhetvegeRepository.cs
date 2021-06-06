@@ -29,5 +29,6 @@ namespace F1Stats.Repository
         bool DeleteVersenyHetvege(int raceNumber);
 
         bool UpdateVersenyhetvegeTeljes(string nev, int versenySzama, int hossz, int kor, DateTime idopont, string helyszin);
+        bool UpdateVersenyhetvege(int id, Versenyhetvege versenyhetvege);
     }
 }

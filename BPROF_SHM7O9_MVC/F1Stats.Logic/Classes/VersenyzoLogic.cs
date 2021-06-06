@@ -50,5 +50,10 @@ namespace F1Stats.Logic
         {
             return this.versenyzoRepo.UpdateVersenyzoTeljes(rajtszam, nev, csapatnev, eletkor, osszpont, idenybelipont);
         }
+
+        public bool UpdateVersenyzo(int rajtszam, Versenyzo versenyzo)
+        {
+            return this.UpdateVersenyzo(rajtszam, versenyzo);
+        }
     }
 }

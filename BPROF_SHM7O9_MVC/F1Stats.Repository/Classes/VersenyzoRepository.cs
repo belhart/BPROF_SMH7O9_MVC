@@ -48,7 +48,7 @@
                 this.db.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -99,6 +99,21 @@
             this.db.SaveChanges();
         }
 
+        public bool UpdateVersenyzo(int id, Versenyzo versenyzo)
+        {
+            try
+            {
+                var versTemp = this.GetOne(id);
+                versTemp = versenyzo;
+                this.db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public bool UpdateVersenyzoTeljes(int rajtszam, string nev, string csapatnev, int eletkor, int osszpont, int idenybelipont)
         {
             try
@@ -112,7 +127,7 @@
                 this.db.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

@@ -53,7 +53,7 @@ namespace F1Stats.Web.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult UpdateEredmeny(int oldId, [FromBody] Eredmeny eredmeny)
         {
-            //this.logic.UpdateVersenyzo(oldId, eredmeny);
+            this.logic.UpdateEredmeny(oldId, eredmeny);
             return Ok();
         }
     }

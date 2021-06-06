@@ -66,5 +66,9 @@ namespace F1Stats.Logic
             return this.csapatRepo.UpdateCsapatTeljes(name, motor, versenyekszama, gyozelmek);
         }
 
+        public bool UpdateCsapat(string name, Csapat oldCsapat)
+        {
+            return this.csapatRepo.UpdateCsapat(name, oldCsapat);
+        }
     }
 }

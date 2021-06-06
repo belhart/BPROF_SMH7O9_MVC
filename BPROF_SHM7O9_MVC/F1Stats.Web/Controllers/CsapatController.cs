@@ -25,12 +25,18 @@ namespace F1Stats.Web.Controllers
             return this.logic.GetOneCsapat(name);
         }
 
+        [HttpGet]
+        public IEnumerable<Csapat> GetAll()
+        {
+            return this.logic.GetAllCsapat();
+        }
+
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public IActionResult DeleteCsapat(string id)
+        public IActionResult DeleteCsapat(string name)
         {
-            this.logic.DeleteCsapat(id);
-            return Ok();
+            if (this.logic.DeleteCsapat(name)) return Ok();
+            return BadRequest();
         }
 
         [Authorize(Roles = "Admin")]
@@ -43,11 +49,10 @@ namespace F1Stats.Web.Controllers
 
         [HttpPut("{oldId}")]
         [Authorize(Roles = "Admin")]
-        public IActionResult UpdateCsapat(int oldId, [FromBody] Csapat csapat)
+        public IActionResult UpdateCsapat(string name, [FromBody] Csapat csapat)
         {
-            //TODO: make a new update method for the interface
-            //this.logic.UpdateVersenyzo(oldId, eredmeny);
-            return Ok();
+            if (this.logic.UpdateCsapat(name, csapat)) return Ok();
+            return BadRequest();
         }
     }
 }

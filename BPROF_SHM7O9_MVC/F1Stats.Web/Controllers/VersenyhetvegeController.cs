@@ -26,12 +26,18 @@ namespace F1Stats.Web.Controllers
             return this.logic.GetOneVersenyhetvege(id);
         }
 
+        [HttpGet]
+        public IEnumerable<Versenyhetvege> GetAll()
+        {
+            return this.logic.GetAllVersenyhetvege();
+        }
+
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteVersenyhetvege(int id)
         {
-            this.logic.DeleteVersenyhetvege(id);
-            return Ok();
+            if(this.logic.DeleteVersenyhetvege(id)) return Ok();
+            return BadRequest();
         }
 
         [Authorize(Roles = "Admin")]
@@ -46,8 +52,8 @@ namespace F1Stats.Web.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult UpdateVersenyhetvege(int oldId, [FromBody] Versenyhetvege versenyhetvege)
         {
-            //this.logic.UpdateVersenyzo(oldId, versenyhetvege);
-            return Ok();
+            if(this.logic.UpdateVersenyhetvege(oldId, versenyhetvege)) return Ok();
+            return BadRequest();
         }
     }
 }

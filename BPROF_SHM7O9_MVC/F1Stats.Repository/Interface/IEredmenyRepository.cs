@@ -21,5 +21,6 @@ namespace F1Stats.Repository
         bool DeleteEredmeny(int eredmenyId);
 
         bool UpdateEredmenyTeljes(int id, int versenyhetvege_szam, int rajtszam, int helyezes, int pont);
+        bool UpdateEredmeny(int id, Eredmeny eredmeny);
     }
 }

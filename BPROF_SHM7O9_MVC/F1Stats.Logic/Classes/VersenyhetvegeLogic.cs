@@ -51,5 +51,9 @@ namespace F1Stats.Logic
             return this.vhRepo.UpdateVersenyhetvegeTeljes(nev, versenySzama, hossz, kor, idopont, helyszin);
         }
 
+        public bool UpdateVersenyhetvege(int oldId, Versenyhetvege versenyhetvege)
+        {
+            return this.vhRepo.UpdateVersenyhetvege(oldId, versenyhetvege);
+        }
     }
 }

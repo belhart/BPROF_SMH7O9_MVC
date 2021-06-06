@@ -47,7 +47,7 @@
                 this.db.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -90,7 +90,22 @@
                 this.db.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateCsapat(string name, Csapat csapat)
+        {
+            try
+            {
+                var csapatTemp = this.GetOne(name);
+                csapatTemp = csapat;
+                this.db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
             {
                 return false;
             }

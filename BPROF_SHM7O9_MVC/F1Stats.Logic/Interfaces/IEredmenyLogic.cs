@@ -17,6 +17,7 @@ namespace F1Stats.Logic
         void CreateEredmeny(int id, int versenyhetvege_szam, int helyezes, int pont);
 
         bool UpdateEredmeny(int id, int versenyhetvege_szam, int rajtszam, int helyezes, int pont);
+        bool UpdateEredmeny(int oldId, Eredmeny eredmeny);
 
 
     }
