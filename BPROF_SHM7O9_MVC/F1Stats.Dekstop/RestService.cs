@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace F1Stats.Dekstop
 {
@@ -10,7 +11,7 @@ namespace F1Stats.Dekstop
     {
         HttpClient client;
         string endpoint;
-        string baseurl = "https://f1api.2u.si/";
+        string baseurl = "https://apif1.2u.si/";
         public RestService(string endpoint, string token = "")
         {
             this.client = new HttpClient();
@@ -34,6 +35,15 @@ namespace F1Stats.Dekstop
                 await client.PostAsJsonAsync(endpoint, item);
 
             response.EnsureSuccessStatusCode();
+        }
+
+        public async Task<R> Put<R, T>(T item)
+        {
+            HttpResponseMessage response =
+                await client.PutAsJsonAsync(endpoint + "/", item);
+
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<R>();
         }
     }
 }
