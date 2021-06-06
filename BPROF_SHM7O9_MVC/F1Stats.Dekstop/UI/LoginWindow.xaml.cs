@@ -1,6 +1,7 @@
 ﻿using F1Stats.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,14 +25,28 @@ namespace F1Stats.Dekstop.UI
             InitializeComponent();
         }
 
-        private void Login_Button_Click(object sender, RoutedEventArgs e)
+        private async void Login_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                /*RestService restService = new RestService("/Auth");
+                TokenViewModel tvm = await restService.Put<TokenViewModel, LoginViewModel>(new LoginViewModel()
+                {
+                    Username = username.Text,
+                    Password = password.Password
+                });
+                Token = tvm.Token;
+                this.DialogResult = true;*/
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Wrong Password or username");
+            }
         }
 
         private void Register_Button_Click(object sender, RoutedEventArgs e)
         {
-            RestService restService = new RestService("https://pcwebshop.azurewebsites.net/", "/Auth");
+            RestService restService = new RestService("/Auth");
             restService.Post<RegisterViewModel>(new RegisterViewModel()
             {
                 Email = username.Text,
