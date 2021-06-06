@@ -26,6 +26,7 @@ namespace F1Stats.Web.Controllers
             return this.logic.GetOneVersenyhetvege(id);
         }
 
+        [HttpGet]
         public IEnumerable<Versenyhetvege> GetAll()
         {
             return this.logic.GetAllVersenyhetvege();
