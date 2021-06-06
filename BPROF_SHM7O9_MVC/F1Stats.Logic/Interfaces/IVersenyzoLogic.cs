@@ -18,6 +18,7 @@ namespace F1Stats.Logic
         void CreateVersenyzo(int rajtszam, string nev, string csapatnev, int eletkor, int osszpont, int idenybelipont);
 
         bool UpdateVersenyzo(int rajtszam, string nev, string csapatnev, int eletkor, int osszpont, int idenybelipont);
+        bool UpdateVersenyzo(int rajtszam, Versenyzo versenyzo);
 
     }
 }

@@ -18,5 +18,6 @@ namespace F1Stats.Logic
         void CreateVersenyhetvege(string nev, int versenySzama, int hossz, int kor, DateTime idopont, string helyszin);
 
         bool UpdateVersenyhetvege(string nev, int versenySzama, int hossz, int kor, DateTime idopont, string helyszin);
+        bool UpdateVersenyhetvege(int oldId, Versenyhetvege versenyhetvege);
     }
 }

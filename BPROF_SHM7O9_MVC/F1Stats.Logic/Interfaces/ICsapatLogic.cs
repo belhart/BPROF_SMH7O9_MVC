@@ -18,6 +18,7 @@ namespace F1Stats.Logic
         void CreateCsapat(string name, string motor, int versenyekszama, int gyozelmek);
 
         bool UpdateCsapat(string name, string motor, int? versenyekszama, int? gyozelmek);
+        bool UpdateCsapat(string name, Csapat oldCsapat);
 
     }
 }
