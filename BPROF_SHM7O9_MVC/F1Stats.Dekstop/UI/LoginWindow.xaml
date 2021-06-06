@@ -11,8 +11,8 @@
         <PasswordBox HorizontalAlignment="Center" Margin="0,155,0,0" VerticalAlignment="Top" Width="380" FontSize="18"/>
         <Label Content="Username" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24"/>
         <Label Content="Password" HorizontalAlignment="Center" Margin="0,110,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Button Content="Login" HorizontalAlignment="Center" Margin="0,195,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Button Content="Register" HorizontalAlignment="Center" Margin="0,243,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Button Content="Login" HorizontalAlignment="Center" Margin="0,195,0,0" VerticalAlignment="Top" FontSize="24" Click="Login_Button_Click"/>
+        <Button Content="Register" HorizontalAlignment="Center" Margin="0,243,0,0" VerticalAlignment="Top" FontSize="24" Click="Register_Button_Click"/>
         <Grid/>
 
     </Grid>

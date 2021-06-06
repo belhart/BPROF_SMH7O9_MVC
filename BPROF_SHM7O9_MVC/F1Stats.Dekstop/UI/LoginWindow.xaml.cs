@@ -17,9 +17,20 @@ namespace F1Stats.Dekstop.UI
     /// </summary>
     public partial class LoginWindow : Window
     {
+        public string Token { get; private set; }
         public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void Login_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Register_Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
