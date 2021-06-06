@@ -16,6 +16,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace F1Stats.Web
 {
@@ -42,7 +43,31 @@ namespace F1Stats.Web
             var connectionString = "server=95.111.254.24;database=projektmunka_teszt;user=projektmunka;password=" + Configuration["DBPassword"] + ";ApplicationIntent=ReadWrite;";
             services.AddDbContext<F1StatsDbContext>(options => options.UseSqlServer(connectionString));
 
+            services.AddSwaggerGen(c =>
+            {
+                // configure SwaggerDoc and others
 
+                // add JWT Authentication
+                var securityScheme = new OpenApiSecurityScheme
+                {
+                    Name = "JWT Authentication",
+                    Description = "Enter JWT Bearer token **_only_**",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer", // must be lower case
+                    BearerFormat = "JWT",
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+                c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                {securityScheme, new string[] { }}
+                });
+            });
             services.AddIdentity<IdentityUser, IdentityRole>(
                      option =>
                      {
@@ -109,6 +134,16 @@ namespace F1Stats.Web
                     .Build();
             }
             app.UseCors();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
