@@ -1,4 +1,5 @@
-﻿using System;
+﻿using F1Stats.Dekstop.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,22 @@ namespace F1Stats.Dekstop
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string token;
         public MainWindow()
         {
-            InitializeComponent();
+            this.token = string.Empty;
+            this.InitializeComponent();
+            this.Login();
+            if (token == string.Empty) this.Close();
+        }
+
+        private async Task Login()
+        {
+            LoginWindow lw = new LoginWindow();
+            if (lw.ShowDialog() == true)
+            {
+                this.token = lw.Token;
+            }
         }
     }
 }
