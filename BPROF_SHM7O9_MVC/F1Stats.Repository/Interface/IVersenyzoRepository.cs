@@ -29,5 +29,6 @@ namespace F1Stats.Repository
         bool Deleteversenyzo(int rajtSzam);
 
         bool UpdateVersenyzoTeljes(int rajtszam, string nev, string csapatnev, int eletkor, int osszpont, int idenybelipont);
+        bool UpdateVersenyzo(int id, Versenyzo versenyzo);
     }
 }

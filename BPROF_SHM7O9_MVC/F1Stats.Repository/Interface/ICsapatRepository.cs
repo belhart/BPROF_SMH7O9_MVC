@@ -25,5 +25,6 @@ namespace F1Stats.Repository
         bool DeleteCsapat(string name);
 
         bool UpdateCsapatTeljes(string name, string motor, int? versenyekszama, int? gyozelmek);
+        bool UpdateCsapat(string name, Csapat csapat);
     }
 }
