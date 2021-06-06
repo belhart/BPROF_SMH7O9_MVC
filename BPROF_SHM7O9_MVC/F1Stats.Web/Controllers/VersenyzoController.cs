@@ -46,7 +46,7 @@ namespace F1Stats.Web.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult UpdateVersenyzo(int oldId, [FromBody] Versenyzo versenyzo)
         {
-            //this.logic.UpdateVersenyzo(oldId, versenyzo);
+            this.logic.UpdateVersenyzo(oldId, versenyzo);
             return Ok();
         }
 

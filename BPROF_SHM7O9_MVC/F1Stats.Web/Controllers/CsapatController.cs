@@ -27,9 +27,9 @@ namespace F1Stats.Web.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public IActionResult DeleteCsapat(string id)
+        public IActionResult DeleteCsapat(string name)
         {
-            this.logic.DeleteCsapat(id);
+            this.logic.DeleteCsapat(name);
             return Ok();
         }
 
@@ -43,10 +43,9 @@ namespace F1Stats.Web.Controllers
 
         [HttpPut("{oldId}")]
         [Authorize(Roles = "Admin")]
-        public IActionResult UpdateCsapat(int oldId, [FromBody] Csapat csapat)
+        public IActionResult UpdateCsapat(string name, [FromBody] Csapat csapat)
         {
-            //TODO: make a new update method for the interface
-            //this.logic.UpdateVersenyzo(oldId, eredmeny);
+            this.logic.UpdateCsapat(name, csapat);
             return Ok();
         }
     }
