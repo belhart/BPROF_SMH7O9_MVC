@@ -50,5 +50,10 @@ namespace F1Stats.Logic
         {
             return this.eredmenyRepo.UpdateEredmenyTeljes(id, versenyhetvege_szam, rajtszam, helyezes,pont);
         }
+
+        public bool UpdateEredmeny(int oldId, Eredmeny eredmeny)
+        {
+            return this.eredmenyRepo.UpdateEredmeny(oldId, eredmeny);
+        }
     }
 }
