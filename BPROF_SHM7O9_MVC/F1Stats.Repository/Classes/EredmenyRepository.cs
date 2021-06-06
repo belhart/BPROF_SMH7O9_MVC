@@ -33,7 +33,7 @@
                 this.db.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -75,7 +75,22 @@
                 this.db.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateEredmeny(int id, Eredmeny eredmeny)
+        {
+            try
+            {
+                var eredmenytTemp = this.GetOne(id);
+                eredmenytTemp = eredmeny;
+                this.db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
             {
                 return false;
             }

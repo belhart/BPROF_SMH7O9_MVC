@@ -43,7 +43,7 @@
                 this.db.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -94,6 +94,21 @@
             this.db.SaveChanges();
         }
 
+        public bool UpdateVersenyhetvege(int id, Versenyhetvege versenyhetvege)
+        {
+            try
+            {
+                var vhtTemp = this.GetOne(id);
+                vhtTemp = versenyhetvege;
+                this.db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public bool UpdateVersenyhetvegeTeljes(string nev, int versenySzama, int hossz, int kor, DateTime idopont, string helyszin)
         {
             try
@@ -108,7 +123,7 @@
                 this.db.SaveChanges();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
