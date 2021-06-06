@@ -1,4 +1,5 @@
-﻿using System;
+﻿using F1Stats.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -30,7 +31,14 @@ namespace F1Stats.Dekstop.UI
 
         private void Register_Button_Click(object sender, RoutedEventArgs e)
         {
+            RestService restService = new RestService("https://pcwebshop.azurewebsites.net/", "/Auth");
+            restService.Post<RegisterViewModel>(new RegisterViewModel()
+            {
+                Email = username.Text,
+                Password = password.Password
+            });
 
+            MessageBox.Show("You can log in now.");
         }
     }
 }
