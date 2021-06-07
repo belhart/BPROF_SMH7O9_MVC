@@ -5,8 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:F1Stats.Dekstop.views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Red">
-            
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid>
+        <DataGrid x:Name="DGrid1" IsReadOnly="True" HorizontalAlignment="Left"
+                  VerticalAlignment="Top" Width="800"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Race Weekend Name" Binding="{Binding Path=nev}"/>
+                <DataGridTextColumn Header="Reace Weekend Number" Binding="{Binding Path=VERSENYHETVEGE_SZAMA}"/>
+                <DataGridTextColumn Header="Length" Binding="{Binding Path=hossz}"/>
+                <DataGridTextColumn Header="Laps" Binding="{Binding Path=kor}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Path=idopont}"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding Path=helyszin}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
