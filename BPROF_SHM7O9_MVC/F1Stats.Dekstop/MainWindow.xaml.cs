@@ -1,4 +1,5 @@
 ﻿using F1Stats.Dekstop.UI;
+using F1Stats.Dekstop.viewmodels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,16 @@ namespace F1Stats.Dekstop
             {
                 this.token = lw.Token;
             }
+        }
+
+        private void RedView_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new RedViewModel();
+        }
+
+        private void BlueView_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new BlueViewModel();
         }
     }
 }
