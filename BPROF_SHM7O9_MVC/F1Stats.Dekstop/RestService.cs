@@ -45,5 +45,17 @@ namespace F1Stats.Dekstop
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<R>();
         }
+
+        public async Task<List<T>> Get<T>()
+        {
+            List<T> items = new List<T>();
+            HttpResponseMessage response = await
+                client.GetAsync(endpoint);
+            if (response.IsSuccessStatusCode)
+            {
+                items = await response.Content.ReadAsAsync<List<T>>();
+            }
+            return items;
+        }
     }
 }
