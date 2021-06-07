@@ -42,12 +42,12 @@ namespace F1Stats.Dekstop
 
         private void TeamView_Clicked(object sender, RoutedEventArgs e)
         {
-            DataContext = new RaceWeekendViewModel();
+            DataContext = new TeamViewModel(token);
         }
 
         private void RaceWeekendView_Clicked(object sender, RoutedEventArgs e)
         {
-            DataContext = new TeamViewModel();
+            DataContext = new RaceWeekendViewModel(token);
         }
     }
 }
