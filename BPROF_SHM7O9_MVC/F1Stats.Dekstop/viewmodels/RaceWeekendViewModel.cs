@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace F1Stats.Dekstop.viewmodels
 {
-    public class BlueViewModel
+    public class RaceWeekendViewModel
     {
     }
 }

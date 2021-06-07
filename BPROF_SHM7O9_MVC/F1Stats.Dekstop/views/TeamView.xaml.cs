@@ -18,9 +18,9 @@ namespace F1Stats.Dekstop.views
     /// <summary>
     /// Interaction logic for BlueView.xaml
     /// </summary>
-    public partial class BlueView : UserControl
+    public partial class TeamView : UserControl
     {
-        public BlueView()
+        public TeamView()
         {
             InitializeComponent();
         }

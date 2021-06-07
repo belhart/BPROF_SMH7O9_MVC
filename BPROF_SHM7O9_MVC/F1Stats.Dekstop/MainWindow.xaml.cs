@@ -40,14 +40,14 @@ namespace F1Stats.Dekstop
             }
         }
 
-        private void RedView_Clicked(object sender, RoutedEventArgs e)
+        private void TeamView_Clicked(object sender, RoutedEventArgs e)
         {
-            DataContext = new RedViewModel();
+            DataContext = new RaceWeekendViewModel();
         }
 
-        private void BlueView_Clicked(object sender, RoutedEventArgs e)
+        private void RaceWeekendView_Clicked(object sender, RoutedEventArgs e)
         {
-            DataContext = new BlueViewModel();
+            DataContext = new TeamViewModel();
         }
     }
 }

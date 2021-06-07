@@ -18,9 +18,9 @@ namespace F1Stats.Dekstop.views
     /// <summary>
     /// Interaction logic for RedView.xaml
     /// </summary>
-    public partial class RedView : UserControl
+    public partial class RaceWeekendView : UserControl
     {
-        public RedView()
+        public RaceWeekendView()
         {
             InitializeComponent();
         }
