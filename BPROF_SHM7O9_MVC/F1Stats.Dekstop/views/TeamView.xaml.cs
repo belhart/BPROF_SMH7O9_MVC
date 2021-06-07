@@ -1,4 +1,6 @@
-﻿using System;
+﻿using F1Stats.Data.Models;
+using F1Stats.Dekstop.viewmodels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,25 @@ namespace F1Stats.Dekstop.views
     /// </summary>
     public partial class TeamView : UserControl
     {
+        private string token;
+
         public TeamView()
         {
             InitializeComponent();
+        }
+
+        private async Task RefreshTeamList()
+        {
+            DGrid1.ItemsSource = null;
+            RestService restService = new RestService("/Csapat", token);
+            IEnumerable<Csapat> teamList = await restService.Get<Csapat>();
+            DGrid1.ItemsSource = teamList;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.token = ((TeamViewModel)this.DataContext).TOKEN;
+            this.RefreshTeamList();
         }
     }
 }
