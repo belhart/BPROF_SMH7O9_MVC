@@ -81,7 +81,7 @@ namespace F1Stats.Dekstop.views
             }
             catch
             {
-                MessageBox.Show("Something went wrong");
+                MessageBox.Show("Something went wrong or you dont have access to this action.");
             }
         }
     }
