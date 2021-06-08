@@ -59,21 +59,15 @@ namespace F1Stats.Dekstop.views
 
         private void DGrid1_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Right)
+            if (e.ChangedButton != MouseButton.Right) return;
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to delete the item?", "Delete item", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult != MessageBoxResult.Yes) return;
+            DataGrid grid = sender as DataGrid;
+            if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
             {
-                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure you want to delete the item?", "Delete item", System.Windows.MessageBoxButton.YesNo);
-                if (messageBoxResult == MessageBoxResult.Yes)
-                {
-                    DataGrid grid = sender as DataGrid;
-                    if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
-                    {
-                        //This is the code which helps to show the data when the row is double clicked.
-                        DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
-                        Csapat csapat = (Csapat)dgr.Item;
-                        this.DeleteTeamFromList(csapat.csapat_nev);
-                    }
-                    return;
-                }
+                DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
+                Csapat csapat = (Csapat)dgr.Item;
+                this.DeleteTeamFromList(csapat.csapat_nev);
             }
         }
 
