@@ -88,7 +88,8 @@ namespace F1Stats.Dekstop.views
             try
             {
                 restService.Delete<string>(name);
-                MessageBox.Show("Product successfully deleted");
+                MessageBox.Show("Team successfully deleted");
+                this.RefreshTeamList();
             }
             catch
             {
