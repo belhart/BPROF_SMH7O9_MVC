@@ -31,7 +31,7 @@ namespace F1Stats.Web.Controllers
             return this.logic.GetAllCsapat();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{name}")]
         [Authorize(Roles = "Admin")]
         public IActionResult DeleteCsapat(string name)
         {
@@ -47,7 +47,7 @@ namespace F1Stats.Web.Controllers
             return Ok();
         }
 
-        [HttpPut("{oldId}")]
+        [HttpPut("{name}")]
         [Authorize(Roles = "Admin")]
         public IActionResult UpdateCsapat(string name, [FromBody] Csapat csapat)
         {
