@@ -101,7 +101,10 @@
             try
             {
                 Csapat csapatTemp = this.GetOne(name);
-                csapatTemp = csapat;
+                csapatTemp.csapat_nev = csapat.csapat_nev;
+                csapatTemp.motor = csapat.motor;
+                csapatTemp.versenyek_szama = csapat.versenyek_szama;
+                csapatTemp.gyozelmek = csapat.gyozelmek;
                 this.db.SaveChanges();
                 return true;
             }
