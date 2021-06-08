@@ -57,5 +57,13 @@ namespace F1Stats.Dekstop
             }
             return items;
         }
+        public async void Delete<K>(K id)
+        {
+            HttpResponseMessage response =
+                await client.DeleteAsync(endpoint + "/" + id.ToString());
+
+            response.EnsureSuccessStatusCode();
+        }
+
     }
 }
