@@ -82,7 +82,7 @@
         {
             try
             {
-                var csapat = this.GetOne(name);
+                Csapat csapat = this.GetOne(name);
                 csapat.csapat_nev = name;
                 csapat.motor = motor;
                 csapat.versenyek_szama = versenyekszama;
@@ -100,7 +100,7 @@
         {
             try
             {
-                var csapatTemp = this.GetOne(name);
+                Csapat csapatTemp = this.GetOne(name);
                 csapatTemp = csapat;
                 this.db.SaveChanges();
                 return true;

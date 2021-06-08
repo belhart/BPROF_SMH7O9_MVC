@@ -39,7 +39,7 @@ namespace F1Stats.Data
                 */
                 var builder = new SqlConnectionStringBuilder("server=95.111.254.24;database=projektmunka_teszt;user=projektmunka");
                 builder.Password = this.connectionPassword;
-                optionsBuilder.UseSqlServer(builder.ConnectionString);
+                optionsBuilder.UseLazyLoadingProxies().UseSqlServer(builder.ConnectionString);
             }
         }
 

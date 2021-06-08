@@ -41,7 +41,7 @@ namespace F1Stats.Web
 
 
             var connectionString = "server=95.111.254.24;database=projektmunka_teszt;user=projektmunka;password=" + Configuration["DBPassword"] + ";ApplicationIntent=ReadWrite;";
-            services.AddDbContext<F1StatsDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<F1StatsDbContext>(options => options.UseLazyLoadingProxies().UseSqlServer(connectionString));
 
             services.AddSwaggerGen(c =>
             {

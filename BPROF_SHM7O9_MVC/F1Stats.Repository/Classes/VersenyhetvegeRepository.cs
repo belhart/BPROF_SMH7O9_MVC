@@ -98,8 +98,12 @@
         {
             try
             {
-                var vhtTemp = this.GetOne(id);
-                vhtTemp = versenyhetvege;
+                Versenyhetvege vhtTemp = this.GetOne(id);
+                vhtTemp.helyszin = versenyhetvege.helyszin;
+                vhtTemp.nev = versenyhetvege.nev;
+                vhtTemp.hossz = versenyhetvege.hossz;
+                vhtTemp.kor = versenyhetvege.kor;
+                vhtTemp.idopont = versenyhetvege.idopont;
                 this.db.SaveChanges();
                 return true;
             }
@@ -113,7 +117,7 @@
         {
             try
             {
-                var versenyhetvege = this.GetOne(versenySzama);
+                Versenyhetvege versenyhetvege = this.GetOne(versenySzama);
                 versenyhetvege.nev = nev;
                 versenyhetvege.VERSENYHETVEGE_SZAMA = versenySzama;
                 versenyhetvege.hossz = hossz;
