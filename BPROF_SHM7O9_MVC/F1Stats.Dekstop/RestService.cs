@@ -65,5 +65,12 @@ namespace F1Stats.Dekstop
             response.EnsureSuccessStatusCode();
         }
 
+        public async void Put<K, T>(K id, T item)
+        {
+            HttpResponseMessage response =
+                await client.PutAsJsonAsync(endpoint + "/" + id.ToString(), item);
+
+            response.EnsureSuccessStatusCode();
+        }
     }
 }
