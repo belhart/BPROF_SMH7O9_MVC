@@ -47,10 +47,21 @@ namespace F1Stats.Dekstop.views
 
         private void DGrid1_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Save Changes?", "Do you want to save the changes made", System.Windows.MessageBoxButton.YesNo);
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Do you want to save the changes made?", "Save changes", System.Windows.MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
-                var asd = e.Row.DataContext;
+                var editedValue = (e.EditingElement as TextBox).Text;
+                string teamName = (e.Row.DataContext as Csapat).csapat_nev;
+                Csapat newTeam = (e.Row.DataContext as Csapat);
+                switch (e.Column.SortMemberPath)
+                {
+                    case "motor": newTeam.motor = editedValue; break;
+                    case "csapat_nev": newTeam.csapat_nev = editedValue; break;
+                    case "gyozelmek": newTeam.gyozelmek = int.Parse(editedValue); break;
+                    case "versenyek_szama": newTeam.versenyek_szama = int.Parse(editedValue); break;
+                    default: MessageBox.Show("Something went wrong"); return;
+                }
+                this.UpdateTeamFromList(teamName, newTeam);
                 return;
             }
             DGrid1.ItemsSource = null;
@@ -78,6 +89,19 @@ namespace F1Stats.Dekstop.views
             {
                 restService.Delete<string>(name);
                 MessageBox.Show("Product successfully deleted");
+            }
+            catch
+            {
+                MessageBox.Show("Something went wrong or you dont have access to this action.");
+            }
+        }
+
+        private void UpdateTeamFromList(string oldName, Csapat newTeam)
+        {
+            RestService restService = new RestService("/Csapat", token);
+            try
+            {
+                restService.Put<string, Csapat>(oldName, newTeam);
             }
             catch
             {
