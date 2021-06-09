@@ -45,10 +45,10 @@ namespace F1Stats.Dekstop.UI
             }
         }
 
-        private void Register_Button_Click(object sender, RoutedEventArgs e)
+        private async void Register_Button_Click(object sender, RoutedEventArgs e)
         {
             RestService restService = new RestService("/Auth");
-            restService.Post<RegisterViewModel>(new RegisterViewModel()
+            await restService.Post<RegisterViewModel>(new RegisterViewModel()
             {
                 Email = username.Text,
                 Password = password.Password

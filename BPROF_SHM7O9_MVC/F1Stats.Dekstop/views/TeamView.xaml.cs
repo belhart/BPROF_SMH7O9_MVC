@@ -40,10 +40,10 @@ namespace F1Stats.Dekstop.views
             DGrid1.ItemsSource = teamList;
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.token = ((TeamViewModel)this.DataContext).TOKEN;
-            this.RefreshTeamList();
+            await this.RefreshTeamList();
         }
 
         private void DGrid1_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -98,7 +98,7 @@ namespace F1Stats.Dekstop.views
             {
                 await restService.Delete<string>(name);
                 MessageBox.Show("Team successfully deleted");
-                this.RefreshTeamList();
+                await this.RefreshTeamList();
             }
             catch
             {
@@ -116,7 +116,7 @@ namespace F1Stats.Dekstop.views
             catch
             {
                 MessageBox.Show("Something went wrong or you dont have access to this action.");
-                this.RefreshTeamList();
+                await this.RefreshTeamList();
             }
         }
 
@@ -146,7 +146,7 @@ namespace F1Stats.Dekstop.views
             {
                 await restService.Post<Csapat>(newTeam);
                 this.ClearFields();
-                this.RefreshTeamList();
+                await this.RefreshTeamList();
                 MessageBox.Show("Team added");
             }
             catch

@@ -38,10 +38,10 @@ namespace F1Stats.Dekstop.views
             DGrid1.ItemsSource = raceWeekendList;
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.token = ((RaceWeekendViewModel)this.DataContext).TOKEN;
-            this.ResreshRaceWeekendList();
+            await this.ResreshRaceWeekendList();
         }
 
         private void DGrid1_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -96,7 +96,7 @@ namespace F1Stats.Dekstop.views
             {
                 await restService.Delete<int>(raceWeekendNumber);
                 MessageBox.Show("Race weekend successfully deleted");
-                this.ResreshRaceWeekendList();
+                await this.ResreshRaceWeekendList();
             }
             catch
             {
@@ -144,7 +144,7 @@ namespace F1Stats.Dekstop.views
             {
                 await restService.Post<Versenyhetvege>(newRaceWeeekend);
                 this.ClearFields();
-                this.ResreshRaceWeekendList();
+                await this.ResreshRaceWeekendList();
                 MessageBox.Show("Race weekend added");
             }
             catch
