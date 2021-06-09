@@ -11,7 +11,7 @@
                   VerticalAlignment="Top" Width="800" Height="250"
                   AutoGenerateColumns="False" CellEditEnding="DGrid1_CellEditEnding" PreviewMouseDoubleClick="DGrid1_PreviewMouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Team Name" Binding="{Binding Path=csapat_nev}"  />
+                <DataGridTextColumn IsReadOnly="True" Header="Team Name" Binding="{Binding Path=csapat_nev}"  />
                 <DataGridTextColumn Header="Engine Name" Binding="{Binding Path=motor}"  />
                 <DataGridTextColumn Header="Number of Races" Binding="{Binding Path=versenyek_szama}"  />
                 <DataGridTextColumn Header="Wins" Binding="{Binding Path=gyozelmek}"/>
