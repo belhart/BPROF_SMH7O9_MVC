@@ -54,14 +54,22 @@ namespace F1Stats.Dekstop.views
                 var editedValue = (e.EditingElement as TextBox).Text;
                 string teamName = (e.Row.DataContext as Csapat).csapat_nev;
                 Csapat newTeam = (e.Row.DataContext as Csapat);
-                switch (e.Column.SortMemberPath)
+                try
                 {
-                    case "motor": newTeam.motor = editedValue; break;
-                    case "csapat_nev": newTeam.csapat_nev = editedValue; break;
-                    case "gyozelmek": newTeam.gyozelmek = int.Parse(editedValue); break;
-                    case "versenyek_szama": newTeam.versenyek_szama = int.Parse(editedValue); break;
-                    default: MessageBox.Show("Something went wrong"); return;
+                    switch (e.Column.SortMemberPath)
+                    {
+                        case "motor": newTeam.motor = editedValue; break;
+                        case "csapat_nev": newTeam.csapat_nev = editedValue; break;
+                        case "gyozelmek": newTeam.gyozelmek = int.Parse(editedValue); break;
+                        case "versenyek_szama": newTeam.versenyek_szama = int.Parse(editedValue); break;
+                        default: MessageBox.Show("Something went wrong"); return;
+                    }
                 }
+                catch
+                {
+                    MessageBox.Show("Invalid input for cell");
+                }
+
                 this.UpdateTeamFromList(teamName, newTeam);
                 return;
             }
