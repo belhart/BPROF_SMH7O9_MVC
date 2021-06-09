@@ -7,7 +7,7 @@
         xmlns:viewmodels="clr-namespace:F1Stats.Dekstop.viewmodels"
         xmlns:views="clr-namespace:F1Stats.Dekstop.views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
     <Window.Resources>
         <DataTemplate x:Name="teamViewTemplate" DataType="{x:Type viewmodels:TeamViewModel}">
             <views:TeamView DataContext="{Binding}" />
