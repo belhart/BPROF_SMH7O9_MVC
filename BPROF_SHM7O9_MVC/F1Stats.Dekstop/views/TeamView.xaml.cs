@@ -119,15 +119,40 @@ namespace F1Stats.Dekstop.views
 
         private void Reset_Button_Click(object sender, RoutedEventArgs e)
         {
-            this.tnTextBox.Text = "";
-            this.wTextBox.Text = "";
-            this.NoRTextBox.Text = "";
-            this.EnTextBox.Text = "";
+            this.ClearFields();
         }
 
         private void Create_Button_Click(object sender, RoutedEventArgs e)
         {
+            if ((this.EnTextBox.Text == "") || (this.NoRTextBox.Text == "") || (this.wTextBox.Text == "") || (this.tnTextBox.Text == "")) { MessageBox.Show("Some fields are empty"); return; }
+            Csapat newTeam = new Csapat()
+            {
+                csapat_nev = this.tnTextBox.Text,
+                motor = this.EnTextBox.Text,
+                gyozelmek = int.Parse(this.wTextBox.Text),
+                versenyek_szama = int.Parse(this.NoRTextBox.Text)
+            };
+            RestService restService = new RestService("/Csapat", token);
+            try
+            {
+                restService.Post<Csapat>(newTeam);
+                this.ClearFields();
+                this.RefreshTeamList();
+                MessageBox.Show("Team added");
+            }
+            catch
+            {
+                MessageBox.Show("Something went wrong or you dont have access to this action.");
+            }
 
+        }
+
+        private void ClearFields()
+        {
+            this.tnTextBox.Text = "";
+            this.wTextBox.Text = "";
+            this.NoRTextBox.Text = "";
+            this.EnTextBox.Text = "";
         }
     }
 }
