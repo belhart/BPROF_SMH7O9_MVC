@@ -23,24 +23,24 @@ namespace F1Stats.Dekstop.views
     public partial class RaceWeekendView : UserControl
     {
         private string token;
-        IEnumerable<Versenyhetvege> cacheRaceWeekendteamList;
+        IEnumerable<Versenyhetvege> cacheRaceWeekendList;
         public RaceWeekendView()
         {
             InitializeComponent();
         }
-        private async Task RefreshTeamList()
+        private async Task ResreshRaceWeekendList()
         {
             DGrid1.ItemsSource = null;
             RestService restService = new RestService("/Versenyhetvege", token);
-            IEnumerable<Versenyhetvege> teamList = await restService.Get<Versenyhetvege>();
-            this.cacheRaceWeekendteamList = teamList;
-            DGrid1.ItemsSource = teamList;
+            IEnumerable<Versenyhetvege> raceWeekendList = await restService.Get<Versenyhetvege>();
+            this.cacheRaceWeekendList = raceWeekendList;
+            DGrid1.ItemsSource = raceWeekendList;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.token = ((RaceWeekendViewModel)this.DataContext).TOKEN;
-            this.RefreshTeamList();
+            this.ResreshRaceWeekendList();
         }
 
         private void DGrid1_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -61,11 +61,11 @@ namespace F1Stats.Dekstop.views
                     case "helyszin": newRaceWeekend.helyszin = editedValue; break;
                     default: MessageBox.Show("Something went wrong"); return;
                 }
-                this.UpdateTeamFromList(raceWeekendNumber, newRaceWeekend);
+                this.UpdateRaceWeekendFromList(raceWeekendNumber, newRaceWeekend);
                 return;
             }
             DGrid1.ItemsSource = null;
-            DGrid1.ItemsSource = cacheRaceWeekendteamList;
+            DGrid1.ItemsSource = cacheRaceWeekendList;
         }
 
         private void DGrid1_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -78,18 +78,18 @@ namespace F1Stats.Dekstop.views
             {
                 DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
                 Versenyhetvege versenyhetvege = (Versenyhetvege)dgr.Item;
-                this.DeleteTeamFromList(versenyhetvege.VERSENYHETVEGE_SZAMA);
+                this.DeleteRaceWeekendFromList(versenyhetvege.VERSENYHETVEGE_SZAMA);
             }
         }
 
-        private void DeleteTeamFromList(int raceWeekendNumber)
+        private async  void DeleteRaceWeekendFromList(int raceWeekendNumber)
         {
             RestService restService = new RestService("/Versenyhetvege", token);
             try
             {
-                restService.Delete<int>(raceWeekendNumber);
+                await restService.Delete<int>(raceWeekendNumber);
                 MessageBox.Show("Race weekend successfully deleted");
-                this.RefreshTeamList();
+                this.ResreshRaceWeekendList();
             }
             catch
             {
@@ -97,12 +97,12 @@ namespace F1Stats.Dekstop.views
             }
         }
 
-        private void UpdateTeamFromList(int raceWeekendNumber, Versenyhetvege newRaceWeekend)
+        private async void UpdateRaceWeekendFromList(int raceWeekendNumber, Versenyhetvege newRaceWeekend)
         {
             RestService restService = new RestService("/Versenyhetvege", token);
             try
             {
-                restService.Put<int, Versenyhetvege>(raceWeekendNumber, newRaceWeekend);
+                await restService.Put<int, Versenyhetvege>(raceWeekendNumber, newRaceWeekend);
             }
             catch
             {
