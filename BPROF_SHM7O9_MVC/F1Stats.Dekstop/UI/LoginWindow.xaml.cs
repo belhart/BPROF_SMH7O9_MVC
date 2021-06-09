@@ -23,6 +23,7 @@ namespace F1Stats.Dekstop.UI
         public LoginWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
         private async void Login_Button_Click(object sender, RoutedEventArgs e)
@@ -40,7 +41,7 @@ namespace F1Stats.Dekstop.UI
             }
             catch (HttpRequestException err)
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show("Wrong email or password.");
             }
         }
 

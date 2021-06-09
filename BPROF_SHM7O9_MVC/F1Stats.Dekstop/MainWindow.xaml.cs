@@ -28,6 +28,7 @@ namespace F1Stats.Dekstop
             this.token = string.Empty;
             this.InitializeComponent();
             this.Login();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             if (token == string.Empty) this.Close();
         }
 
