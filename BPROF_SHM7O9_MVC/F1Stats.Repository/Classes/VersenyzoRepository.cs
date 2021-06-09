@@ -104,7 +104,11 @@
             try
             {
                 var versTemp = this.GetOne(id);
-                versTemp = versenyzo;
+                versTemp.nev = versenyzo.nev;
+                versTemp.csapat_nev = versenyzo.csapat_nev;
+                versTemp.eletkor = versenyzo.eletkor;
+                versTemp.ossz_pont = versenyzo.ossz_pont;
+                versTemp.idenybeli_pont = versenyzo.idenybeli_pont;
                 this.db.SaveChanges();
                 return true;
             }

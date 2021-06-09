@@ -86,7 +86,10 @@
             try
             {
                 var eredmenytTemp = this.GetOne(id);
-                eredmenytTemp = eredmeny;
+                eredmenytTemp.versenyhetvege_szam = eredmeny.versenyhetvege_szam;
+                eredmenytTemp.rajtszam = eredmeny.rajtszam;
+                eredmenytTemp.helyezes = eredmeny.helyezes;
+                eredmenytTemp.pont = eredmeny.pont;
                 this.db.SaveChanges();
                 return true;
             }
