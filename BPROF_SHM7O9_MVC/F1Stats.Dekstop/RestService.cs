@@ -29,7 +29,7 @@ namespace F1Stats.Dekstop
             this.endpoint = endpoint;
         }
 
-        public async void Post<T>(T item)
+        public async Task Post<T>(T item)
         {
             HttpResponseMessage response =
                 await client.PostAsJsonAsync(endpoint, item);
@@ -57,7 +57,7 @@ namespace F1Stats.Dekstop
             }
             return items;
         }
-        public async void Delete<K>(K id)
+        public async Task Delete<K>(K id)
         {
             HttpResponseMessage response =
                 await client.DeleteAsync(endpoint + "/" + id.ToString());
@@ -65,7 +65,7 @@ namespace F1Stats.Dekstop
             response.EnsureSuccessStatusCode();
         }
 
-        public async void Put<K, T>(K id, T item)
+        public async Task Put<K, T>(K id, T item)
         {
             HttpResponseMessage response =
                 await client.PutAsJsonAsync(endpoint + "/" + id.ToString(), item);

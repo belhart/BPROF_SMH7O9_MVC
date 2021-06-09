@@ -83,12 +83,12 @@ namespace F1Stats.Dekstop.views
             }
         }
 
-        private void DeleteTeamFromList(string name)
+        private async void DeleteTeamFromList(string name)
         {
             RestService restService = new RestService("/Csapat", token);
             try
             {
-                restService.Delete<string>(name);
+                await restService.Delete<string>(name);
                 MessageBox.Show("Team successfully deleted");
                 this.RefreshTeamList();
             }
@@ -98,16 +98,17 @@ namespace F1Stats.Dekstop.views
             }
         }
 
-        private void UpdateTeamFromList(string oldName, Csapat newTeam)
+        private async void UpdateTeamFromList(string oldName, Csapat newTeam)
         {
             RestService restService = new RestService("/Csapat", token);
             try
             {
-                restService.Put<string, Csapat>(oldName, newTeam);
+                await restService.Put<string, Csapat>(oldName, newTeam);
             }
             catch
             {
                 MessageBox.Show("Something went wrong or you dont have access to this action.");
+                this.RefreshTeamList();
             }
         }
 
@@ -122,7 +123,7 @@ namespace F1Stats.Dekstop.views
             this.ClearFields();
         }
 
-        private void Create_Button_Click(object sender, RoutedEventArgs e)
+        private async void Create_Button_Click(object sender, RoutedEventArgs e)
         {
             if ((this.EnTextBox.Text == "") || (this.NoRTextBox.Text == "") || (this.wTextBox.Text == "") || (this.tnTextBox.Text == "")) { MessageBox.Show("Some fields are empty"); return; }
             Csapat newTeam = new Csapat()
@@ -135,7 +136,7 @@ namespace F1Stats.Dekstop.views
             RestService restService = new RestService("/Csapat", token);
             try
             {
-                restService.Post<Csapat>(newTeam);
+                await restService.Post<Csapat>(newTeam);
                 this.ClearFields();
                 this.RefreshTeamList();
                 MessageBox.Show("Team added");
