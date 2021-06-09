@@ -32,7 +32,7 @@ namespace F1Stats.Dekstop
             if (token == string.Empty) this.Close();
         }
 
-        private async Task Login()
+        private async void Login()
         {
             LoginWindow lw = new LoginWindow();
             if (lw.ShowDialog() == true)
