@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,15 +52,21 @@ namespace F1Stats.Dekstop.views
                 var editedValue = (e.EditingElement as TextBox).Text;
                 int raceWeekendNumber = (e.Row.DataContext as Versenyhetvege).VERSENYHETVEGE_SZAMA;
                 Versenyhetvege newRaceWeekend = (e.Row.DataContext as Versenyhetvege);
-                switch (e.Column.SortMemberPath)
+                try
                 {
-                    case "nev": newRaceWeekend.nev = editedValue; break;
-                    case "VERSENYHETVEGE_SZAMA": newRaceWeekend.VERSENYHETVEGE_SZAMA = int.Parse(editedValue); break;
-                    case "hossz": newRaceWeekend.hossz = int.Parse(editedValue); break;
-                    case "kor": newRaceWeekend.kor = int.Parse(editedValue); break;
-                    case "idopont": newRaceWeekend.idopont = DateTime.Parse(editedValue); break;
-                    case "helyszin": newRaceWeekend.helyszin = editedValue; break;
-                    default: MessageBox.Show("Something went wrong"); return;
+                    switch (e.Column.SortMemberPath)
+                    {
+                        case "nev": newRaceWeekend.nev = editedValue; break;
+                        case "hossz": newRaceWeekend.hossz = int.Parse(editedValue); break;
+                        case "kor": newRaceWeekend.kor = int.Parse(editedValue); break;
+                        case "idopont": newRaceWeekend.idopont = DateTime.Parse(editedValue); break;
+                        case "helyszin": newRaceWeekend.helyszin = editedValue; break;
+                        default: MessageBox.Show("Something went wrong"); return;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Invalid input for cell");
                 }
                 this.UpdateRaceWeekendFromList(raceWeekendNumber, newRaceWeekend);
                 return;
@@ -108,6 +115,52 @@ namespace F1Stats.Dekstop.views
             {
                 MessageBox.Show("Something went wrong or you dont have access to this action.");
             }
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void Reset_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.ClearFields();
+        }
+
+        private async void Create_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if ((this.RwnTextBox.Text == "") || (this.LaTextBox.Text == "") || (this.LeTextBox.Text == "") || (this.DTextBox.Text == "") || (this.CTextBox.Text == "")) { MessageBox.Show("Some fields are empty"); return; }
+            Versenyhetvege newRaceWeeekend = new Versenyhetvege()
+            {
+                nev = this.RwnTextBox.Text,
+                helyszin = this.CTextBox.Text,
+                kor = int.Parse(this.LaTextBox.Text),
+                hossz = int.Parse(this.LeTextBox.Text),
+                idopont = DateTime.Parse(this.DTextBox.Text)
+            };
+            RestService restService = new RestService("/Versenyhetvege", token);
+            try
+            {
+                await restService.Post<Versenyhetvege>(newRaceWeeekend);
+                this.ClearFields();
+                this.ResreshRaceWeekendList();
+                MessageBox.Show("Race weekend added");
+            }
+            catch
+            {
+                MessageBox.Show("Something went wrong or you dont have access to this action.");
+            }
+
+        }
+
+        private void ClearFields()
+        {
+            this.RwnTextBox.Text = "";
+            this.CTextBox.Text = "";
+            this.LaTextBox.Text = "";
+            this.LeTextBox.Text = "";
+            this.DTextBox.Text = "";
         }
     }
 }
